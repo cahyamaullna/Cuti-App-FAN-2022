@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -15,23 +16,23 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/components.css">
-  <link rel="icon" type="image/png" href="../assets/img/logo.png"/>
+  <link rel="icon" type="image/png" href="../assets/img/logo.png" />
 </head>
 
 <body>
   <div id="app">
     <section class="section">
       <div class="d-flex flex-wrap align-items-stretch">
-        <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
+        <div class="col-lg-4 col-md-6 col-12 order-lg-1 order-2 bg-white" style="height: 616px;">
           <div class="p-4 m-3">
-              
-            <img src="../assets/img/logo.png" alt="logo" width="40">
-    
-            <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Program Cuti</span></h4>
+            <div class="d-flex mb-3">
+              <img src="../assets/img/logo.png" alt="logo" width="40">
+              <h4 class="text-dark font-weight-bold ml-3 mt-3">Program Cuti</h4>
+            </div>
             <p class="text-muted">Sebelum mulai, anda harus masuk atau daftar jika belum mempunyai akun</p>
 
-           <form method="POST" action="{{ route('login')}}" class="needs-validation" novalidate="">
-             @csrf
+            <form method="POST" action="{{ route('login')}}" class="needs-validation" novalidate="">
+              @csrf
               <div class="form-group">
                 <label for="email" value="{{ __('Email') }}">Email</label>
                 <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
@@ -40,7 +41,7 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group mt-n1">
                 <div class="d-block">
                   <label for="password" class="control-label" value="{{ __('Password') }}">Password</label>
                 </div>
@@ -50,34 +51,34 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group mt-n2">
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
                   <label class="custom-control-label" for="remember-me">Ingat saya</label>
                 </div>
               </div>
 
-              <div class="form-group text-right">
+              <div class="form-group text-right mt-n3">
                 @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}" class="float-left mt-3">
-                      Lupa Password?
-                    </a>
+                <a href="{{ route('password.request') }}" class="float-left mt-3">
+                  Lupa Password?
+                </a>
                 @endif
                 <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
                   {{ __('Masuk') }}
                 </button>
               </div>
 
-              <div class="mt-5 text-center">
-                Tidak mempunyai akun? 
+              <div class="mt-5 text-center mt-n2">
+                Tidak mempunyai akun?
                 @if (Route::has('register'))
                 <a href="{{ route('register') }}">Buat akun</a>
                 @endif
               </div>
-           </form>
+            </form>
 
             <div class="text-center mt-5 text-small">
-              Copyright &copy; PT FAN Integrasi Teknologi. Grup 1
+              &copy; 2022 PT FAN Integrasi Teknologi | Grup 1
               <div class="mt-2">
                 <a href="#">Privacy Policy</a>
                 <div class="bullet"></div>
@@ -88,11 +89,11 @@
         </div>
         <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="../assets/img/wallpaper.jpg">
           <div class="absolute-bottom-left index-2">
-              
+
             <div class="text-light p-5 pb-2">
               <div class="mb-5 pb-3">
                 <h1 class="mb-2 display-4 font-weight-bold">Selamat Datang</h1>
-                <h5 class="font-weight-normal text-muted-transparent">Bogor, Indonesia</h5>
+                <h5 class="font-weight-normal text-muted-transparent">Bekasi, Indonesia</h5>
               </div>
               Photo by <a class="text-light bb" target="_blank" href="https://1.bp.blogspot.com/-Rr76B01JCp8/X0xxNVtdC2I/AAAAAAAAAY8/N2_2o3iOAaUZ0u_S8KjSQHcm8jyMCYW9QCLcBGAsYHQ/s2048/2.%2BGedung%2B2.jpg">PT FAN Integrasi Teknologi</a> on <a class="text-light bb" target="_blank" href="https://fanintek.com/">fanintek.com</a>
             </div>
@@ -118,4 +119,5 @@
 
   <!-- Page Specific JS File -->
 </body>
+
 </html>
