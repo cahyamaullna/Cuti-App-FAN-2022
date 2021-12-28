@@ -25,4 +25,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('dashboard', DashboardController::class);
+    Route::get('/cuti', function () {
+        return view('dataCuti.index', ['title' => 'Data Cuti']);
+    });
+    Route::get('/cuti/create', function () {
+        return view('dataCuti.create', ['title' => 'Form Cuti']);
+    });
 });

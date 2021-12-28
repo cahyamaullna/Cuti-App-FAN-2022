@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Dashboard &mdash; Fanintek</title>
+  <title>{{ $title }} &mdash; Fanintek</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -39,31 +39,18 @@
           <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="nav-item dropdown active">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Histori Cuti</span></a>
               <ul class="dropdown-menu">
-                <li class="active"><a class="nav-link" href="#">Semua Data Cuti</a></li>
-                <li><a class="nav-link" href="#">Proses Cuti</a></li>
-                <li><a class="nav-link" href="#">Tolak Cuti</a></li>
+                <li><a class="nav-link" href="#">Bulan</a></li>
+                <li class="active"><a class="nav-link" href="#">Tahun</a></li>
               </ul>
             </li>
-            <li class="menu-header">Starter</li>
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
-              </ul>
+            <li class="nav-item">
+              <a href="/cuti" class="nav-link"><i class="fas fa-fire"></i><span>Data Cuti</span></a>
             </li>
-            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Bootstrap</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="bootstrap-alert.html">Alert</a></li>
-                <li><a class="nav-link" href="bootstrap-badge.html">Badge</a></li>
-                <li><a class="nav-link" href="bootstrap-breadcrumb.html">Breadcrumb</a></li>
-              </ul>
-            </li>
+            <li class="menu-header">Administrator</li>
+            <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-columns"></i> <span>Permohonan Cuti</span></a>
+            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Kalender Cuti</span></a></li>
         </aside>
       </div>
 

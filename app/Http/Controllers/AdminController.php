@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dashboard;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index', [
-            'title' => 'Dashboard'
-        ]);
+        //
     }
 
     /**
@@ -43,10 +40,10 @@ class DashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Dashboard  $dashboard
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Dashboard $dashboard)
+    public function show($id)
     {
         //
     }
@@ -54,10 +51,10 @@ class DashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Dashboard  $dashboard
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dashboard $dashboard)
+    public function edit($id)
     {
         //
     }
@@ -66,10 +63,10 @@ class DashboardController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dashboard  $dashboard
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dashboard $dashboard)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -77,10 +74,10 @@ class DashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Dashboard  $dashboard
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dashboard $dashboard)
+    public function destroy($id)
     {
         //
     }
