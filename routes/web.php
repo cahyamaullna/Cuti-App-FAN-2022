@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\DatacutiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +25,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('dashboard', DashboardController::class);
+    Route::resource('datacuti', DatacutiController::class);
 });

@@ -17,8 +17,9 @@
   <link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.theme.default.min.css">
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="icon" type="image/png" href="../../assets/img/logo.png" />
 </head>
 
 <body>
@@ -38,38 +39,32 @@
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
+            <li class="nav-item dropdown">
+              <a href="dashboard"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+            </li>
+            <li class="menu-header">Data Cuti</li>
             <li class="nav-item dropdown active">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Data Cuti</span></a>
               <ul class="dropdown-menu">
-                <li class="active"><a class="nav-link" href="#">Semua Data Cuti</a></li>
+                <li class="active"><a class="nav-link" href="datacuti">Semua Data Cuti</a></li>
                 <li><a class="nav-link" href="#">Proses Cuti</a></li>
                 <li><a class="nav-link" href="#">Tolak Cuti</a></li>
               </ul>
             </li>
-            <li class="menu-header">Starter</li>
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
-              </ul>
-            </li>
-            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Bootstrap</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="bootstrap-alert.html">Alert</a></li>
-                <li><a class="nav-link" href="bootstrap-badge.html">Badge</a></li>
-                <li><a class="nav-link" href="bootstrap-breadcrumb.html">Breadcrumb</a></li>
-              </ul>
-            </li>
+            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Kalender</span></a></li>
+            <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+              <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
+                <i class="fas fa-rocket"></i> Only Admin
+              </a>
+            </div>
         </aside>
       </div>
 
       <!-- Main Content -->
       <div class="main-content">
-        @yield('content')
+        <section class="section">
+          @yield('content')
+        </section>
       </div>
       <footer class="main-footer">
         <div class="footer-left">
