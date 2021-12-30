@@ -51,10 +51,19 @@
                 <li><a class="nav-link" href="#">Tolak Cuti</a></li>
               </ul>
             </li>
-            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Kalender</span></a></li>
+            <li class="menu-header">Admin Control</li>
+            <li class="nav-item dropdown active">
+              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user"></i> <span>Control Admin</span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a class="nav-link" href="#">Data Karyawan</a></li>
+                <li><a class="nav-link" href="admin">Data Akun</a></li>
+                
+              </ul>
+            </li>
+            <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Kalender</span></a></li>
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
               <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> Only Admin
+                <i class="fas fa-rocket"></i> About   
               </a>
             </div>
         </aside>
