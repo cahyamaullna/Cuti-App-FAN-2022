@@ -8,7 +8,7 @@
 <div class="section-header">
   <h1>Data Akun</h1>
   <div class="section-header-breadcrumb">
-    <div class="breadcrumb-item"><a href="{{ route('datacuti.create') }}" class="btn btn-primary p-2">Tambah Akun</a></div>
+    <div class="breadcrumb-item"><a href="{{ route('admin.create') }}" class="btn btn-primary p-2">Tambah Akun</a></div>
   </div>
 </div>
 <div class="row">
@@ -32,7 +32,7 @@
             <td>cahya@gmail.com</td>
             <td>1234567</td>
             <td>Karyawan</td>
-            <td><button class="btn btn-warning">Edit</button><button class="btn btn-danger">Hapus</button></td>
+            <td><button class="btn btn-success">Edit</button> <button class="btn btn-danger">Hapus</button></td>
           </tr>
         </tbody>
       </table>
