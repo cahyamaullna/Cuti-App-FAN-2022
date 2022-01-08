@@ -4,17 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Dashboard &mdash; Fanintek</title>
+  <title>{{ $title }} &mdash; Fanintek</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
   <!-- CSS Libraries -->
-  <link rel="stylesheet" href="../node_modules/jqvmap/dist/jqvmap.min.css">
-  <link rel="stylesheet" href="../node_modules/summernote/dist/summernote-bs4.css">
-  <link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.carousel.min.css">
-  <link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.theme.default.min.css">
+  <link rel="stylesheet" href="../../node_modules/jqvmap/dist/jqvmap.min.css">
+  <link rel="stylesheet" href="../../node_modules/summernote/dist/summernote-bs4.css">
+  <link rel="stylesheet" href="../../node_modules/owl.carousel/dist/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="../../node_modules/owl.carousel/dist/assets/owl.theme.default.min.css">
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="../../assets/css/style.css">
@@ -29,43 +29,45 @@
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="#"> <img src="../assets/img/logo.png" class="mr-1" alt="Logo" width="30px" height="30px">
+            <a href="#"> <img src="../../assets/img/logo.png" class="mr-1" alt="Logo" width="30px" height="30px">
               Program Cuti</a>
           </div>
           <!-- Ubah logo FAN -->
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="#"> <img src="../assets/img/logo.png" alt="Logo" width="30px" height="30px">
+            <a href="#"> <img src="../../assets/img/logo.png" alt="Logo" width="30px" height="30px">
             </a>
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="nav-item dropdown">
-              <a href="dashboard"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+            <li class="nav-item dropdown {{ request()->is('dashboard') ? 'active' : '' }}">
+              <a href="/dashboard"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             <li class="menu-header">Data Cuti</li>
-            <li class="nav-item dropdown active">
-              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Data Cuti</span></a>
-              <ul class="dropdown-menu">
-                <li class="active"><a class="nav-link" href="datacuti">Semua Data Cuti</a></li>
-                <li><a class="nav-link" href="#">Proses Cuti</a></li>
-                <li><a class="nav-link" href="#">Tolak Cuti</a></li>
-              </ul>
-            </li>
-            <li class="menu-header">Admin Control</li>
-            <li class="nav-item dropdown active">
-              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user"></i> <span>Control Admin</span></a>
-              <ul class="dropdown-menu">
-                <li class="active"><a class="nav-link" href="#">Data Karyawan</a></li>
-                <li><a class="nav-link" href="admin">Data Akun</a></li>
-                
-              </ul>
+            <li class="nav-item {{ request()->is('data/cuti*') ? 'active' : '' }}">
+              <a href="/data/cuti" class="nav-link"><i class="fas fa-columns"></i> <span>Data Cuti</span></a>
             </li>
             <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Kalender</span></a></li>
+            <li class="menu-header">Admin Control</li>
+            <li class="nav-item dropdown {{ request()->is('admin') ? 'active' : '' }}">
+              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user"></i> <span>Control Admin</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="#">Data Karyawan</a></li>
+                <li class="{{ request()->is('admin') ? 'active' : '' }}"><a class="nav-link" href="admin">Data Akun</a></li>
+              </ul>
+            </li>
+            @if(!auth()->user()->is_admin && auth()->user()->posisi !== 'karyawan')
+            <li class="menu-header">Data Approval</li>
+            <li class="nav-item {{ request()->is('data/approval*') ? 'active' : '' }}">
+              <a href="/data/approval" class="nav-link"><i class="fas fa-columns"></i> <span>Data Approval</span></a>
+            <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Kalender</span></a></li>
+            </li>
+            @endif
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
               <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> About   
+                <i class="fas fa-rocket"></i> About
               </a>
             </div>
+          </ul>
         </aside>
       </div>
 
@@ -77,7 +79,7 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2022 <div class="bullet"></div> FANINTEK | Grup 1
+          &copy; 2022 <div class="bullet"></div> FANINTEK | Grup 1
         </div>
       </footer>
     </div>
@@ -89,21 +91,21 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="../assets/js/stisla.js"></script>
+  <script src="../../assets/js/stisla.js"></script>
 
   <!-- JS Libraies -->
-  <script src="../node_modules/jquery-sparkline/jquery.sparkline.min.js"></script>
-  <script src="../node_modules/chart.js/dist/Chart.min.js"></script>
-  <script src="../node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
-  <script src="../node_modules/summernote/dist/summernote-bs4.js"></script>
-  <script src="../node_modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
+  <script src="../../node_modules/jquery-sparkline/jquery.sparkline.min.js"></script>
+  <script src="../../node_modules/chart.js/dist/Chart.min.js"></script>
+  <script src="../../node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
+  <script src="../../node_modules/summernote/dist/summernote-bs4.js"></script>
+  <script src="../../node_modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
 
   <!-- Template JS File -->
-  <script src="../assets/js/scripts.js"></script>
-  <script src="../assets/js/custom.js"></script>
+  <script src="../../assets/js/scripts.js"></script>
+  <script src="../../assets/js/custom.js"></script>
 
   <!-- Page Specific JS File -->
-  <script src="../assets/js/page/index.js"></script>
+  <script src="../../assets/js/page/index.js"></script>
 </body>
 
 </html>

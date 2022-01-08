@@ -8,7 +8,7 @@
 <div class="section-header">
   <h1>Data Cuti</h1>
   <div class="section-header-breadcrumb">
-    <div class="breadcrumb-item"><a href="{{ route('datacuti.create') }}" class="btn btn-primary p-2">Ajukan Cuti</a></div>
+    <div class="breadcrumb-item"><a href="data/cuti/create" class="btn btn-primary p-2">Ajukan Cuti</a></div>
   </div>
 </div>
 <div class="row">
@@ -24,6 +24,7 @@
             <th scope="col">Jenis Cuti</th>
             <th scope="col">Tanggal</th>
             <th scope="col">Keterangan</th>
+            <th scope="col">Hasil</th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +35,7 @@
             <td>1234567</td>
             <td>Cuti Kakek/Nenek</td>
             <td>2021/8/31</td>
+            <td>Kakek saya....</td>
             <td><button class="btn btn-warning">Proses</button></td>
           </tr>
           <tr>
@@ -43,6 +45,7 @@
             <td>12345678</td>
             <td>Cuti Menikah</td>
             <td>2021/10/31</td>
+            <td>Saya menikah....</td>
             <td><button class="btn btn-success">Setuju</button></td>
           </tr>
           <tr>
@@ -52,6 +55,7 @@
             <td>123456711</td>
             <td>Cuti Melahirkan</td>
             <td>2021/12/25</td>
+            <td>Saya tidak melahirkan....</td>
             <td><button class="btn btn-danger">Tolak</button></td>
           </tr>
         </tbody>
