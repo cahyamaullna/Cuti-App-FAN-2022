@@ -31,6 +31,12 @@
             </div>
             <p class="text-muted">Sebelum mulai, anda harus masuk atau daftar jika belum mempunyai akun</p>
 
+            @if (session('status'))
+            <div class="mb-2 font-medium text-sm text-success">
+              {{ session('status') }}
+            </div>
+            @endif
+
             <form method="POST" action="{{ route('login')}}" class="needs-validation" novalidate="">
               @csrf
               <div class="form-group">
@@ -51,14 +57,7 @@
                 </div>
               </div>
 
-              <div class="form-group mt-n2">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                  <label class="custom-control-label" for="remember-me">Ingat saya</label>
-                </div>
-              </div>
-
-              <div class="form-group text-right mt-n3">
+              <div class="form-group text-right">
                 @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}" class="float-left mt-3">
                   Lupa Password?
@@ -68,16 +67,9 @@
                   {{ __('Masuk') }}
                 </button>
               </div>
-
-              <div class="mt-5 text-center mt-n2">
-                Tidak mempunyai akun?
-                @if (Route::has('register'))
-                <a href="{{ route('register') }}">Buat akun</a>
-                @endif
-              </div>
             </form>
 
-            <div class="text-center mt-5 text-small">
+            <div class="text-center mt-5 pt-3 text-small">
               &copy; 2022 PT FAN Integrasi Teknologi | Grup 1
               <div class="mt-2">
                 <a href="#">Privacy Policy</a>

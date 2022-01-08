@@ -14,23 +14,29 @@
     <ul class="navbar-nav navbar-right">
         <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, {{auth()->user()->name}}</div>
+                <div class="d-sm-none d-lg-inline-block">Hi, {{auth()->user()->nama}}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-            <a href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')" class="dropdown-item has-icon">
-                <i class="far fa-user"></i> Profile
-              </a>
-              <a href="#" class="dropdown-item has-icon">
-                <i class="fas fa-cog"></i> Settings
-              </a>
-              <div class="dropdown-divider"></div>
-              <form method="POST" action="{{ route('logout') }}">
+                @if(auth()->user()->is_admin)
+                <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <a class="dropdown-item has-icon text-dangerk" href="route('logout')" onclick="event.preventDefault();
+                    <a class="dropdown-item has-icon text-danger" href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Log Out</span></a>
                 </form>
+                @else
+                <a href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')" class="dropdown-item has-icon border-bottom border-2">
+                    <i class="far fa-user"></i> Profile
+                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a class="dropdown-item has-icon text-danger" href="route('logout')" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Log Out</span></a>
+                </form>
+                @endif
             </div>
         </li>
     </ul>

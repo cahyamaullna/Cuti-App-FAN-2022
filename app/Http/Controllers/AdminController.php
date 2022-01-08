@@ -14,7 +14,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view ('admin.index');
+        $title = 'data akun';
+        return view('admin.index', compact('title'));
     }
 
     /**
@@ -24,7 +25,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view ('admin.create');
+        $title = 'buat data';
+        return view('admin.create', compact('title'));
     }
 
     /**

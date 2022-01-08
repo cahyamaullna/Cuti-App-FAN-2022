@@ -14,7 +14,8 @@ class DatacutiController extends Controller
      */
     public function index()
     {
-        return view ('datacuti.index');
+        $title = 'Data Cuti';
+        return view('datacuti.index', compact('title'));
     }
 
     /**
@@ -24,7 +25,8 @@ class DatacutiController extends Controller
      */
     public function create()
     {
-        return view ('datacuti.create');
+        $title = 'Buat Cuti';
+        return view('datacuti.create', compact('title'));
     }
 
     /**
