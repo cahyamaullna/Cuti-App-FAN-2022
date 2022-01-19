@@ -14,7 +14,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $title = 'data akun';
+        $title = 'Data Akun';
         return view('admin.index', compact('title'));
     }
 

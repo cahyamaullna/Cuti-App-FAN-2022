@@ -14,7 +14,7 @@ class DatacutiController extends Controller
      */
     public function index()
     {
-        $title = '';
+        $title = 'Data Cuti ';
         return view('datacuti.index', compact('title'));
     }
 
