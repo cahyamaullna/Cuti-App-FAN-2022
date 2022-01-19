@@ -28,8 +28,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('dashboard', DashboardController::class);
     Route::resource('data/cuti', DatacutiController::class);
-    Route::resource('admin', AdminController::class);
 });
+
 Route::group(['middleware' => ['posisi']], function () {
     Route::get('data/approval', [ApprovalController::class, 'index']);
+});
+Route::group(['middleware' => ['is_admin']], function () {
+    Route::resource('admin', AdminController::class);
 });
