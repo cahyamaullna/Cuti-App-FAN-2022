@@ -42,7 +42,7 @@
             <li class="nav-item dropdown {{ request()->is('dashboard') ? 'active' : '' }}">
               <a href="/dashboard"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
-            @if(!auth()->user()->is_admin)
+            @if(!auth()->user()->is_admin && auth()->user()->posisi !== "direktur")
             <li class="menu-header">Data Cuti</li>
             <li class="nav-item {{ request()->is('data/cuti*') ? 'active' : '' }}">
               <a href="/data/cuti" class="nav-link"><i class="fas fa-columns"></i> <span>Data Cuti</span></a>
@@ -66,7 +66,9 @@
             <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Kalender Khusus</span></a></li>
             </li>
             @endif
-           
+           @if(auth()->user()->posisi == "hrd")
+           <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Pengurangan Cuti</span></a></li>
+           @endif
           </ul>
         </aside>
       </div>
