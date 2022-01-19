@@ -46,12 +46,12 @@
             <li class="nav-item {{ request()->is('data/cuti*') ? 'active' : '' }}">
               <a href="/data/cuti" class="nav-link"><i class="fas fa-columns"></i> <span>Data Cuti</span></a>
             </li>
-            <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Kalender</span></a></li>
+            <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Kalender Cuti</span></a></li>
             <li class="menu-header">Admin Control</li>
             <li class="nav-item dropdown {{ request()->is('admin') ? 'active' : '' }}">
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user"></i> <span>Control Admin</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="#">Data Karyawan</a></li>
+                <li><a class="nav-link" href="#">Struktur Jabatan</a></li>
                 <li class="{{ request()->is('admin') ? 'active' : '' }}"><a class="nav-link" href="admin">Data Akun</a></li>
               </ul>
             </li>
@@ -59,14 +59,10 @@
             <li class="menu-header">Data Approval</li>
             <li class="nav-item {{ request()->is('data/approval*') ? 'active' : '' }}">
               <a href="/data/approval" class="nav-link"><i class="fas fa-columns"></i> <span>Data Approval</span></a>
-            <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Kalender</span></a></li>
+            <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Kalender Khusus</span></a></li>
             </li>
             @endif
-            <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-              <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> About
-              </a>
-            </div>
+           
           </ul>
         </aside>
       </div>

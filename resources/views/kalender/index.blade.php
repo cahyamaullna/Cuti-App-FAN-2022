@@ -8,7 +8,7 @@
 <div class="section-header">
   <h1>Data Cuti</h1>
   <div class="section-header-breadcrumb">
-    <div class="breadcrumb-item"><a href="cuti/create" class="btn btn-primary p-2">Ajukan Cuti</a></div>
+    <div class="breadcrumb-item"><a href="data/cuti/create" class="btn btn-primary p-2">Ajukan Cuti</a></div>
   </div>
 </div>
 <div class="row">
