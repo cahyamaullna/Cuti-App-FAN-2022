@@ -29,7 +29,7 @@
               <img src="../assets/img/logo.png" alt="logo" width="40">
               <h4 class="text-dark font-weight-bold ml-3 mt-3">Program Cuti</h4>
             </div>
-            <p class="text-muted">Sebelum mulai, anda harus masuk atau daftar jika belum mempunyai akun</p>
+            <p class="text-muted">Membantu Anda untuk mengajukan cuti Anda secara online.</p>
 
             @if (session('status'))
             <div class="mb-2 font-medium text-sm text-success">
@@ -79,7 +79,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="../assets/img/wallpaper.jpg">
+        <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="../assets/img/sumarekon.jpg">
           <div class="absolute-bottom-left index-2">
 
             <div class="text-light p-5 pb-2">
@@ -87,7 +87,7 @@
                 <h1 class="mb-2 display-4 font-weight-bold">Selamat Datang</h1>
                 <h5 class="font-weight-normal text-muted-transparent">Bekasi, Indonesia</h5>
               </div>
-              Photo by <a class="text-light bb" target="_blank" href="https://1.bp.blogspot.com/-Rr76B01JCp8/X0xxNVtdC2I/AAAAAAAAAY8/N2_2o3iOAaUZ0u_S8KjSQHcm8jyMCYW9QCLcBGAsYHQ/s2048/2.%2BGedung%2B2.jpg">PT FAN Integrasi Teknologi</a> on <a class="text-light bb" target="_blank" href="https://fanintek.com/">fanintek.com</a>
+              Photo by <a class="text-light bb " target="_blank" href="https://1.bp.blogspot.com/-Rr76B01JCp8/X0xxNVtdC2I/AAAAAAAAAY8/N2_2o3iOAaUZ0u_S8KjSQHcm8jyMCYW9QCLcBGAsYHQ/s2048/2.%2BGedung%2B2.jpg">PT FAN Integrasi Teknologi</a> on <a class="text-light bb" target="_blank" href="https://fanintek.com/">fanintek.com</a>
             </div>
           </div>
         </div>
