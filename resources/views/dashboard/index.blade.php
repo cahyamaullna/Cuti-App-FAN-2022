@@ -13,14 +13,14 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
               <div class="card card-statistic-1">
                 <div class="card-icon bg-primary">
-                  <i class="far fa-user"></i>
+                <i class="fas fa-users"></i>
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Total Karyawan</h4>
+                    <h4>Karyawan</h4>
                   </div>
                   <div class="card-body">
-                    100
+                    24
                   </div>
                 </div>
               </div>
@@ -28,14 +28,14 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
               <div class="card card-statistic-1">
                 <div class="card-icon bg-danger">
-                  <i class="far fa-newspaper"></i>
+                <i class="fas fa-user-ninja"></i>
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Cuti Anda</h4>
+                    <h4>Lead</h4>
                   </div>
                   <div class="card-body">
-                    42
+                    3
                   </div>
                 </div>
               </div>
@@ -43,14 +43,14 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
               <div class="card card-statistic-1">
                 <div class="card-icon bg-warning">
-                  <i class="far fa-file"></i>
+                <i class="fas fa-user-tag"></i>
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Libur Anda</h4>
+                    <h4>HRD</h4>
                   </div>
                   <div class="card-body">
-                    1,201
+                    1
                   </div>
                 </div>
               </div>
@@ -58,14 +58,14 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
               <div class="card card-statistic-1">
                 <div class="card-icon bg-success">
-                  <i class="fas fa-circle"></i>
+                <i class="fas fa-user-tie"></i>
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Online Users</h4>
+                    <h4>Direktur</h4>
                   </div>
                   <div class="card-body">
-                    47
+                    1
                   </div>
                 </div>
               </div>
