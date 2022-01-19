@@ -17,12 +17,12 @@
                     <label for="#" class="form-label">Email</label>
                     <input type="text" class="form-control" name="#" required autofocus>
                 </div>
-            </div>
-            <div class="d-flex">
                 <div class="mb-3 w-50">
-                    <label for="#" class="form-label">Password</label>
+                    <label for="#" class="form-label">NPP</label>
                     <input type="text" class="form-control" name="#" required autofocus>
                 </div>
+            </div>
+            <div class="d-flex">
                 <div class="mb-3 w-50 ml-2">
                     <label for="#" class="form-label">Level</label>
                     <select class="form-control" name="#">

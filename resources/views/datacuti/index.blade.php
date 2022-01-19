@@ -36,7 +36,7 @@
             <td>Cuti Kakek/Nenek</td>
             <td>2021/8/31</td>
             <td>Kakek saya....</td>
-            <td><button class="btn btn-warning">Proses</button></td>
+            <td><div class="badge badge-warning">Proses</div></td>
           </tr>
           <tr>
             <th scope="row">2</th>
@@ -46,7 +46,7 @@
             <td>Cuti Menikah</td>
             <td>2021/10/31</td>
             <td>Saya menikah....</td>
-            <td><button class="btn btn-success">Setuju</button></td>
+            <td><div class="badge badge-success">Setuju</div></td>
           </tr>
           <tr>
             <th scope="row">3</th>
@@ -56,13 +56,10 @@
             <td>Cuti Melahirkan</td>
             <td>2021/12/25</td>
             <td>Saya tidak melahirkan....</td>
-            <td><button class="btn btn-danger">Tolak</button></td>
+            <td><div class="badge badge-danger">Tolak</div></td>
           </tr>
         </tbody>
       </table>
-      <!-- <div class="pull-right">
-        <a class="btn btn-success" href="#"> Ajukan Cuti</a>
-      </div> -->
     </div>
   </div>
 </div>

@@ -32,7 +32,11 @@
             <td>cahya@gmail.com</td>
             <td>1234567</td>
             <td>Karyawan</td>
-            <td><button class="btn btn-success">Edit</button> <button class="btn btn-danger">Hapus</button></td>
+            <td>
+              <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
+
+              <a class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip" title="" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-confirm-yes="alert('Deleted')" data-original-title="Delete"><i class="fas fa-trash"></i></a>
+            </td>
           </tr>
         </tbody>
       </table>

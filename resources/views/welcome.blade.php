@@ -23,8 +23,8 @@
   <div id="app">
     <section class="section">
       <div class="d-flex flex-wrap align-items-stretch">
-        <div class="col-lg-4 col-md-6 col-12 order-lg-1 order-2 bg-white" style="height: 616px;">
-          <div class="p-4 m-3">
+        <div class="col-lg-4 col-md-6 col-12 order-lg-1 order-2 bg-white" style="height: 702px;">
+          <div class="p-4 m-3 mt-5">
             <div class="d-flex mb-3">
               <img src="../assets/img/logo.png" alt="logo" width="40">
               <h4 class="text-dark font-weight-bold ml-3 mt-3">Program Cuti</h4>

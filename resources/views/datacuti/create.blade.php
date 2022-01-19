@@ -5,23 +5,25 @@
 </div>
 <div class="p-2 card shadow mb-4">
     <div class="card-body pl-3">
-        <form action="#" method="post">
+        <form action="#" method="post" enctype="multiple">
             @csrf
             <div class="d-flex">
                 <div class="mb-3 w-50">
                     <label for="#" class="form-label">Nomor Surat</label>
-                    <input type="text" class="form-control" name="#" readonly>
+                    <input type="text" class="form-control" name="#" required readonly>
                 </div>
+
+                <div class="mb-3 w-50 ml-2">
+                    <label for="#" class="form-label">NPP</label>
+                    <input type="text" class="form-control" name="#" required readonly>
+                </div>
+
                 <div class="mb-3 w-50 ml-2">
                     <label for="#" class="form-label">Nama</label>
-                    <input type="text" class="form-control" name="#" readonly>
+                    <input type="text" class="form-control" name="#" required readonly>
                 </div>
             </div>
             <div class="d-flex">
-                <div class="mb-3 w-50">
-                    <label for="#" class="form-label">NPP</label>
-                    <input type="text" class="form-control" name="#" required autofocus>
-                </div>
                 <div class="mb-3 w-50 ml-2">
                     <label for="#" class="form-label">Jenis Cuti</label>
                     <select class="form-control" name="#">
@@ -35,15 +37,49 @@
                         <option value="cuti keluarga non inti namun dalam satu rumah">Cuti keluarga non inti namun dalam satu rumah</option>
                     </select>
                 </div>
+                <div class="mb-3 w-50 ml-2">
+                    <label for="#" class="form-label">Jumlah Hari</label>
+                    <input type="text" class="form-control" name="#" required readonly>
+                </div>
+
+                <div class="mb-3 w-50 ml-2">
+                    <label for="#" class="form-label">Sisa Cuti</label>
+                    <input type="text" class="form-control" name="#" required readonly>
+                </div>
+
             </div>
             <div class="d-flex">
                 <div class="mb-3 w-50">
-                    <label for="#" class="form-label">Tanggal</label>
+                    <label for="#" class="form-label">Tanggal Mulai</label>
+                    <input type="date" class="form-control" name="#" required>
+                </div>
+
+                <div class="mb-3 w-50 ml-2">
+                    <label for="#" class="form-label">Tanggal Akhir</label>
                     <input type="date" class="form-control" name="#" required>
                 </div>
                 <div class="mb-3 w-50 ml-2">
                     <label for="#" class="form-label">Keterangan</label>
                     <input type="text" class="form-control" name="#" required>
+                </div>
+            </div>
+            <br>
+            <h5>Pengganti Cuti</h5> 
+            <hr />
+            <div class="d-flex">
+                <div class="mb-3 w-50">
+                    <label for="#" class="form-label">NPP</label>
+                    <input type="text" class="form-control" name="#" required>
+                </div>
+
+                <div class="mb-3 w-50 ml-2">
+                    <label for="#" class="form-label">Nama</label>
+                    <input type="text" class="form-control" name="#" required>
+                </div>
+
+                <div class="mb-3 w-50 ml-2">
+                    <label for="#" class="form-label">Upload Files</label>
+                    <input type="file" class="form-control" name="#" required>
                 </div>
             </div>
             <div class="mb-3">
