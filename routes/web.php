@@ -27,9 +27,18 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('dashboard', DashboardController::class);
+<<<<<<< HEAD
     Route::resource('data/cuti', DatacutiController::class);
     Route::resource('admin', AdminController::class);
 });
 Route::group(['middleware' => ['posisi']], function () {
     Route::get('data/approval', [ApprovalController::class, 'index']);
+=======
+    Route::get('/cuti', function () {
+        return view('dataCuti.index', ['title' => 'Data Cuti']);
+    });
+    Route::get('/cuti/create', function () {
+        return view('dataCuti.create', ['title' => 'Form Cuti']);
+    });
+>>>>>>> 0096b1867d32b39fa843c5bf6fcb70f65afed417
 });

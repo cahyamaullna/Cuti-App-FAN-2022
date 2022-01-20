@@ -14,8 +14,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $title = 'Dashboard';
         return view('dashboard.index', compact('title'));
+=======
+        return view('dashboard.index', [
+            'title' => 'Dashboard'
+        ]);
+>>>>>>> 0096b1867d32b39fa843c5bf6fcb70f65afed417
     }
 
     /**
