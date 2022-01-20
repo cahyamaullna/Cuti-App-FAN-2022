@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dashboard;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,7 +15,11 @@ class DashboardController extends Controller
     public function index()
     {
         $title = 'Dashboard';
-        return view('dashboard.index', compact('title'));
+        $karyawan = User::where('posisi', 'karyawan');
+        $atasan = User::where('posisi', 'atasan');
+        $hrd = User::where('posisi', 'hrd');
+        $direktur = User::where('posisi', 'direktur');
+        return view('dashboard.index', compact('title', 'karyawan', 'atasan', 'hrd', 'direktur'));
     }
 
     /**

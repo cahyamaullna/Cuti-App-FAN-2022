@@ -32,7 +32,6 @@
             <a href="#"> <img src="../../assets/img/logo.png" class="mr-1" alt="Logo" width="30px" height="30px">
               Program Cuti</a>
           </div>
-          <!-- Ubah logo FAN -->
           <div class="sidebar-brand sidebar-brand-sm">
             <a href="#"> <img src="../../assets/img/logo.png" alt="Logo" width="30px" height="30px">
             </a>
@@ -51,11 +50,10 @@
             @endif
             @if(auth()->user()->is_admin)
             <li class="menu-header">Admin Control</li>
-            <li class="nav-item dropdown {{ request()->is('admin') ? 'active' : '' }}">
+            <li class="nav-item dropdown {{ request()->is('admin/data-pegawai*') ? 'active' : '' }}">
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user"></i> <span>Control Admin</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="#">Struktur Jabatan</a></li>
-                <li class="{{ request()->is('admin') ? 'active' : '' }}"><a class="nav-link" href="admin">Data Akun</a></li>
+                <li class="{{ request()->is('admin/data-pegawai*') ? 'active' : '' }}"><a class="nav-link" href="admin/data-pegawai">Data Pegawai</a></li>
               </ul>
             </li>
             @endif
@@ -66,9 +64,9 @@
             <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Kalender Khusus</span></a></li>
             </li>
             @endif
-           @if(auth()->user()->posisi == "hrd")
-           <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Pengurangan Cuti</span></a></li>
-           @endif
+            @if(auth()->user()->posisi == "hrd")
+            <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Pengurangan Cuti</span></a></li>
+            @endif
           </ul>
         </aside>
       </div>
