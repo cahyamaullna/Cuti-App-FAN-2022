@@ -45,7 +45,7 @@
             <td>12345678</td>
             <td>Cuti Menikah</td>
             <td>2021/10/31</td>
-            <td>Saya menikah....</td>
+            <td>Saya menikah bro</td>
             <td><div class="badge badge-success">Setuju</div></td>
           </tr>
           <tr>
