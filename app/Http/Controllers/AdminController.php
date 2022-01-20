@@ -2,86 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $title = 'Data Akun';
-        return view('admin.index', compact('title'));
+        $data = User::where('is_admin', 0)->latest()->paginate(10);
+        $title = 'data akun';
+        return view('admin.pegawai.index', compact('title', 'data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $title = 'buat data';
-        return view('admin.create', compact('title'));
+        return view('admin.pegawai.create', compact('title'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'nama' => ['required', 'min:5', 'max:255'],
+            'email' => ['required', 'unique:users', 'email'],
+            'npp' => ['required', 'min:5', 'numeric', 'unique:users'],
+            'posisi' => ['required']
+        ]);
+
+        $cost = [ 'cost' => 10 ];
+        $validate['password'] = password_hash('fanintek2022', PASSWORD_DEFAULT, $cost);
+
+        User::create($validate);
+        return redirect('/admin/data-pegawai')->with('success', 'Data berhasil disimpan!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Admin $admin)
+    public function destroy(User $user)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Admin $admin)
-    {
-        //
+        $user->delete();
+        return redirect('/admin/data-pegawai')->with('delete', 'Data berhasil dihapus!');
     }
 }
