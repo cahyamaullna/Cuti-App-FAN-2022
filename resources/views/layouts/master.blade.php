@@ -65,7 +65,7 @@
             </li>
             @endif
             @if(auth()->user()->posisi == "hrd")
-            <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Pengurangan Cuti</span></a></li>
+            <li><a class="nav-link" href="#"><i class="fas fa-exclamation"></i> <span>Pengurangan Cuti</span></a></li>
             @endif
           </ul>
         </aside>
