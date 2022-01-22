@@ -11,7 +11,7 @@ class AdminController extends Controller
     public function index()
     {
         $data = User::where('is_admin', 0)->latest()->paginate(10);
-        $title = 'data akun';
+        $title = 'data pegawai';
         return view('admin.pegawai.index', compact('title', 'data'));
     }
 
@@ -30,7 +30,7 @@ class AdminController extends Controller
             'posisi' => ['required']
         ]);
 
-        $cost = [ 'cost' => 10 ];
+        $cost = ['cost' => 10];
         $validate['password'] = password_hash('fanintek2022', PASSWORD_DEFAULT, $cost);
 
         User::create($validate);

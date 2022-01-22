@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CutiController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApprovalController;
-use App\Http\Controllers\DatacutiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\jenisCutiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +28,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('dashboard', DashboardController::class)->except('create', 'store', 'show', 'edit', 'update', 'delete');
-    Route::resource('data/cuti', DatacutiController::class);
+
+    Route::prefix('data')->group(function () {
+        Route::get('cuti', [CutiController::class, 'index']);
+        Route::get('cuti/create', [CutiController::class, 'create']);
+        Route::post('cuti', [CutiController::class, 'store']);
+    });
 });
 
 Route::group(['middleware' => ['posisi']], function () {
@@ -36,11 +41,11 @@ Route::group(['middleware' => ['posisi']], function () {
 });
 Route::group(['middleware' => ['is_admin']], function () {
 
-    Route::prefix('admin')->group( function() {
+    Route::prefix('admin')->group(function () {
         Route::get('data-pegawai', [AdminController::class, 'index']);
         Route::get('data-pegawai/create', [AdminController::class, 'create']);
-        Route::post('data-pegawai', [AdminController::class, 'store']);     
+        Route::post('data-pegawai', [AdminController::class, 'store']);
         Route::delete('data-pegawai/{user}', [AdminController::class, 'destroy']);
     });
-    
+    Route::resource('admin/jenis-cuti', jenisCutiController::class)->except('show');
 });
