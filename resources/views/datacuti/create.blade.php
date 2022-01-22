@@ -1,85 +1,106 @@
 @extends('layouts.master')
 @section('content')
 <div class="section-header mt-n4">
-    <h2>Form cuti FAN 2021</h2>
+    <h2>Form cuti FAN 2022</h2>
 </div>
 <div class="p-2 card shadow mb-4">
     <div class="card-body pl-3">
-        <form action="#" method="post" enctype="multiple">
+        <form action="/data/cuti" method="post" enctype="multipart/form-data">
             @csrf
             <div class="d-flex">
                 <div class="mb-3 w-50">
-                    <label for="#" class="form-label">Nomor Surat</label>
-                    <input type="text" class="form-control" name="#" required readonly>
+                    <label class="form-label">NPP</label>
+                    <input type="text" class="form-control" value="{{ auth()->user()->npp }}" readonly>
+                    <input type="hidden" class="form-control" name="nomer_surat" value="{{ $nomer }}" readonly>
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
-                    <label for="#" class="form-label">NPP</label>
-                    <input type="text" class="form-control" name="#" required readonly>
-                </div>
-
-                <div class="mb-3 w-50 ml-2">
-                    <label for="#" class="form-label">Nama</label>
-                    <input type="text" class="form-control" name="#" required readonly>
+                    <label class="form-label">Nama</label>
+                    <input type="text" class="form-control" value="{{ auth()->user()->nama }}" readonly>
                 </div>
             </div>
             <div class="d-flex">
-                <div class="mb-3 w-50 ml-2">
-                    <label for="#" class="form-label">Jenis Cuti</label>
-                    <select class="form-control" name="#">
-                        <option value="cuti tahunan">Cuti tahunan</option>
-                        <option value="cuti menikah">Cuti menikah</option>
-                        <option value="cuti melahirkan">Cuti melahirkan</option>
-                        <option value="cuti keluarga inti meninggal">Cuti keluarga inti meninggal</option>
-                        <option value="cuti kakek/nenek">Cuti kakek/nenek</option>
-                        <option value="cuti mendampingi istri melahirkan">Cuti mendampingi istri melahirkan</option>
-                        <option value="cuti keguguran">Cuti keguguran</option>
-                        <option value="cuti keluarga non inti namun dalam satu rumah">Cuti keluarga non inti namun dalam satu rumah</option>
+                <div class="mb-3 w-50">
+                    <label for="jenis_cuti" class="form-label">Jenis Cuti</label>
+                    <select class="form-control" name="jenis_cuti" value="{{ old('jenis_cuti') }}">
+                        @foreach($jeniscuti as $jeniscuti)
+                        <option value="{{ $jeniscuti->nama }}">{{ $jeniscuti->nama }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="mb-3 w-50 ml-2">
-                    <label for="#" class="form-label">Jumlah Hari</label>
-                    <input type="text" class="form-control" name="#" required readonly>
+                    <label class="form-label">Jumlah Hari</label>
+                    <input type="text" class="form-control" placeholder="0" value="{{ $jeniscuti->jumlah_hari }} hari" readonly>
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
-                    <label for="#" class="form-label">Sisa Cuti</label>
-                    <input type="text" class="form-control" name="#" required readonly>
+                    <label for="sisa_cuti" class="form-label">Sisa Cuti</label>
+                    <input type="text" class="form-control" name="sisa_cuti" placeholder="0 hari" readonly>
                 </div>
 
             </div>
             <div class="d-flex">
                 <div class="mb-3 w-50">
-                    <label for="#" class="form-label">Tanggal Mulai</label>
-                    <input type="date" class="form-control" name="#" required>
+                    <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
+                    <input type="date" class="form-control @error('tanggal_mulai') is-invalid @enderror" name="tanggal_mulai" value="{{ old('tanggal_mulai') }}">
+                    @error('tanggal_mulai')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
-                    <label for="#" class="form-label">Tanggal Akhir</label>
-                    <input type="date" class="form-control" name="#" required>
+                    <label for="tanggal_akhir" class="form-label">Tanggal Akhir</label>
+                    <input type="date" class="form-control @error('tanggal_akhir') is-invalid @enderror" name="tanggal_akhir" value="{{ old('tanggal_akhir') }}">
+                    @error('tanggal_akhir')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="mb-3 w-50 ml-2">
-                    <label for="#" class="form-label">Keterangan</label>
-                    <input type="text" class="form-control" name="#" required>
+                    <label for="keterangan" class="form-label">Keterangan</label>
+                    <input type="text" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan" value="{{ old('keterangan') }}">
+                    @error('keterangan')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
             </div>
             <br>
-            <h5>Pengganti Cuti</h5> 
+            <h5>Pengganti Cuti</h5>
             <hr />
             <div class="d-flex">
                 <div class="mb-3 w-50">
-                    <label for="#" class="form-label">NPP</label>
-                    <input type="text" class="form-control" name="#" required>
+                    <label for="npp_pengganti" class="form-label">NPP</label>
+                    <input type="text" class="form-control @error('npp_pengganti') is-invalid @enderror" name="npp_pengganti" value="{{ old('npp_pengganti') }}">
+                    @error('npp_pengganti')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
-                    <label for="#" class="form-label">Nama</label>
-                    <input type="text" class="form-control" name="#" required>
+                    <label for="nama_pengganti" class="form-label">Nama</label>
+                    <input type="text" class="form-control @error('nama_pengganti') is-invalid @enderror" name="nama_pengganti" value="{{ old('nama_pengganti') }}">
+                    @error('nama_pengganti')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
-                    <label for="#" class="form-label">Upload Files</label>
-                    <input type="file" class="form-control" name="#" required>
+                    <label for="upload_bukti" class="form-label">Upload Files</label>
+                    <input type="file" class="form-control border-0 pl-0 @error('upload_bukti') is-invalid @enderror" name="upload_bukti">
+                    @error('upload_bukti')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
             </div>
             <div class="mb-3">

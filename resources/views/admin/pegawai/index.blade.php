@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 <div class="section-header">
-  <h1>Data Akun</h1>
+  <h1>Data Pegawai</h1>
   <div class="section-header-breadcrumb">
     <div class="breadcrumb-item"><a href="/admin/data-pegawai/create" class="btn btn-primary p-2">Tambah Akun</a></div>
   </div>
@@ -36,6 +36,7 @@
           </tr>
         </thead>
         <tbody>
+          @if($data->count())
           @foreach($data as $data)
           <tr>
             <td>{{ $loop->iteration }}</td>
@@ -52,6 +53,11 @@
             </td>
           </tr>
           @endforeach
+          @else
+          <tr>
+            <td colspan="6" class="text-center font-weight-bold">Data Pegawai Tidak ada</td>
+          </tr>
+          @endif
         </tbody>
       </table>
     </div>

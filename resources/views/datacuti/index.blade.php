@@ -28,36 +28,26 @@
           </tr>
         </thead>
         <tbody>
+          @if($cuties->count())
+          @foreach($cuties as $cuti)
           <tr>
-            <th scope="row">1</th>
-            <td>Fadly</td>
-            <td>12345678</td>
-            <td>1234567</td>
-            <td>Cuti Kakek/Nenek</td>
-            <td>2021/8/31</td>
-            <td>Kakek saya....</td>
-            <td><div class="badge badge-warning">Proses</div></td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $cuti->user->nama }}</td>
+            <td>{{ $cuti->nomer_surat}}</td>
+            <td>{{ $cuti->user->npp }}</td>
+            <td>{{ $cuti->jenis_cuti }}</td>
+            <td>{{ $cuti->tanggal_mulai}}</td>
+            <td>{{ $cuti->keterangan }}</td>
+            <td>
+              <div class="badge badge-warning">Proses</div>
+            </td>
           </tr>
+          @endforeach
+          @else
           <tr>
-            <th scope="row">2</th>
-            <td>Fadly</td>
-            <td>123456789</td>
-            <td>12345678</td>
-            <td>Cuti Menikah</td>
-            <td>2021/10/31</td>
-            <td>Saya menikah bro</td>
-            <td><div class="badge badge-success">Setuju</div></td>
+            <td colspan="8" class="text-center font-weight-bold">Data Cuti Tidak Ada</td>
           </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Fadly</td>
-            <td>1234567810</td>
-            <td>123456711</td>
-            <td>Cuti Melahirkan</td>
-            <td>2021/12/25</td>
-            <td>Saya tidak melahirkan....</td>
-            <td><div class="badge badge-danger">Tolak</div></td>
-          </tr>
+          @endif
         </tbody>
       </table>
     </div>
