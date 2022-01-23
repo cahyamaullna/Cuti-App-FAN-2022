@@ -51,7 +51,7 @@
             <hr />
             <div class="mb-3">
                 <a href="/admin/data-pegawai" class="btn btn-danger">Kembali</a>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type ="submit" class="btn btn-primary" id="swal-2">Simpan</button>
             </div>
         </form>
     </div>

@@ -41,6 +41,9 @@
             <li class="nav-item dropdown {{ request()->is('dashboard') ? 'active' : '' }}">
               <a href="/dashboard"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
+            <li class="nav-item dropdown {{ request()->is('user-dashboard') ? 'active' : '' }}">
+              <a href="/user-dashboard"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+            </li>
             @if(!auth()->user()->is_admin && auth()->user()->posisi !== "direktur")
             <li class="menu-header">Data Cuti</li>
             <li class="nav-item {{ request()->is('data/cuti*') ? 'active' : '' }}">
@@ -106,6 +109,9 @@
 
   <!-- Page Specific JS File -->
   <script src="../../assets/js/page/index.js"></script>
+  <script src="../../assets/js/page/modules-calendar.js"></script>
+  <script src="../../assets/js/page/sweetalert.min.js"></script>
+
 </body>
 
 </html>

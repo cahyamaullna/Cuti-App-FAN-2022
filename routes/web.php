@@ -6,6 +6,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\DatacutiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\MyProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +25,15 @@ Route::get('/', function () {
 })->name('login');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    return view('user-dashboard');
 })->name('dashboard');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('dashboard', DashboardController::class)->except('create', 'store', 'show', 'edit', 'update', 'delete');
+    Route::resource('user-dashboard', UserDashboardController::class);
     Route::resource('data/cuti', DatacutiController::class);
+    Route::resource('myprofile', MyProfileController::class);
+
 });
 
 Route::group(['middleware' => ['posisi']], function () {
