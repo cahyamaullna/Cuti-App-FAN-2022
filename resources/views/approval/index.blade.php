@@ -19,8 +19,7 @@
                         <th scope="col">Nama</th>
                         <th scope="col">Jenis Cuti</th>
                         <th scope="col">Tanggal</th>
-                        <th scope="col">Keterangan</th>
-                        <th scope="col">Approval</th>
+                        <th scope="col">Detail</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,11 +29,7 @@
                         <td>Fadly</td>
                         <td>Cuti Kakek/Nenek</td>
                         <td>2021/8/31</td>
-                        <td>Kakek saya....</td>
-                        <td>
-                            <button class="badge badge-danger border-0 border-circle"><i class="fas fa-times-circle"></i></button>
-                            <button class="badge badge-success border-0"><i class="fas fa-check"></i></button>
-                        </td>
+                        <td><a href="approval/detail" class="btn btn-icon btn-light mr-2" title="" data-original-title="Detail"><i class="fas fa-eye"></i></a></td>
                     </tr>
                 </tbody>
             </table>

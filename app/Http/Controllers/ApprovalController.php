@@ -11,4 +11,12 @@ class ApprovalController extends Controller
         $title = 'Approval';
         return view('approval.index', compact('title'));
     }
+
+    public function show ()
+    { 
+        $title = 'Detail';
+        return view('approval.detail', compact('title'));
+    }
+
+
 }
