@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['middleware' => ['posisi']], function () {
     Route::get('data/approval', [ApprovalController::class, 'index']);
+    Route::get('data/approval/detail', [ApprovalController::class, 'show']);
 });
 Route::group(['middleware' => ['is_admin']], function () {
 
