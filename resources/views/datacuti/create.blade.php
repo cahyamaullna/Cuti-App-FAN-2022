@@ -1,11 +1,21 @@
 @extends('layouts.master')
+
 @section('content')
+<<<<<<< HEAD
 <div class="section-header mt-n4">
     <h2>Form cuti FAN 2022</h2>
 </div>
 <div class="p-2 card shadow mb-4">
     <div class="card-body pl-3">
         <form action="/data/cuti" method="post" enctype="multipart/form-data">
+=======
+<header class="pb-2 mt-n5">
+    <h2>Form cuti FAN 2021</h2>
+</header>
+<div class="p-2 card shadow mb-4">
+    <div class="card-body pl-0">
+        <form action="#" method="post">
+>>>>>>> 418e8ec2b765f9edac287cbbb6ea788e39cfb446
             @csrf
             <div class="d-flex">
                 <div class="mb-3 w-50">
@@ -104,7 +114,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <a href="/data/cuti" class="btn btn-danger">Kembali</a>
+                <a href="/cuti" class="btn btn-danger">Kembali</a>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>

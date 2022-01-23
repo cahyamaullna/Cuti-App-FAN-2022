@@ -38,6 +38,7 @@
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
+<<<<<<< HEAD
             <li class="nav-item dropdown {{ request()->is('dashboard') ? 'active' : '' }}">
               <a href="/dashboard"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
@@ -69,6 +70,21 @@
             <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Pengurangan Cuti</span></a></li>
             @endif
           </ul>
+=======
+            <li class="nav-item dropdown active">
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Histori Cuti</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="#">Bulan</a></li>
+                <li class="active"><a class="nav-link" href="#">Tahun</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="/cuti" class="nav-link"><i class="fas fa-fire"></i><span>Data Cuti</span></a>
+            </li>
+            <li class="menu-header">Administrator</li>
+            <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-columns"></i> <span>Permohonan Cuti</span></a>
+            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Kalender Cuti</span></a></li>
+>>>>>>> 0096b1867d32b39fa843c5bf6fcb70f65afed417
         </aside>
       </div>
 
