@@ -40,7 +40,7 @@ class jenisCutiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => ['required', 'unique:jenis_cuti', 'max:255'],
+            'nama' => ['required', 'unique:jeniscuti', 'max:255'],
             'jumlah_hari' => ['required', 'numeric', 'min:0', 'max:255']
         ]);
 
@@ -75,7 +75,7 @@ class jenisCutiController extends Controller
         ];
 
         if ($request->nama != $jenisCuti['nama']) {
-            $rule['nama'] = ['required', 'unique:jenis_cuti', 'max:255'];
+            $rule['nama'] = ['required', 'unique:jeniscuti', 'max:255'];
         }
         $validate = $request->validate($rule);
         $jenisCuti->update($validate);

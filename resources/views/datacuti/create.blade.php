@@ -15,22 +15,22 @@
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
-                    <label class="form-label">Nama</label>
+                    <label class="form-label">Nama Lengkap</label>
                     <input type="text" class="form-control" value="{{ auth()->user()->nama }}" readonly>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="mb-3 w-50">
                     <label for="jenis_cuti" class="form-label">Jenis Cuti</label>
-                    <select class="form-control" name="jenis_cuti" value="{{ old('jenis_cuti') }}">
-                        @foreach($jeniscuti as $jeniscuti)
-                        <option value="{{ $jeniscuti->nama }}">{{ $jeniscuti->nama }}</option>
+                    <select class="form-control" name="jeniscuti_id">
+                        @foreach($jeniscuties as $jeniscuti)
+                        <option value="{{ $jeniscuti->id }}">{{ $jeniscuti->nama }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="mb-3 w-50 ml-2">
                     <label class="form-label">Jumlah Hari</label>
-                    <input type="text" class="form-control" placeholder="0" value="{{ $jeniscuti->jumlah_hari }} hari" readonly>
+                    <input type="text" class="form-control" value="{{ $jeniscuti->jumlah_hari }} hari" readonly>
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
@@ -75,7 +75,7 @@
             <div class="d-flex">
                 <div class="mb-3 w-50">
                     <label for="npp_pengganti" class="form-label">NPP</label>
-                    <input type="text" class="form-control @error('npp_pengganti') is-invalid @enderror" name="npp_pengganti" value="{{ old('npp_pengganti') }}">
+                    <input type="number" class="form-control @error('npp_pengganti') is-invalid @enderror" name="npp_pengganti" value="{{ old('npp_pengganti') }}">
                     @error('npp_pengganti')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
-                    <label for="nama_pengganti" class="form-label">Nama</label>
+                    <label for="nama_pengganti" class="form-label">Nama Lengkap</label>
                     <input type="text" class="form-control @error('nama_pengganti') is-invalid @enderror" name="nama_pengganti" value="{{ old('nama_pengganti') }}">
                     @error('nama_pengganti')
                     <div class="invalid-feedback">

@@ -52,7 +52,7 @@
                     @endforeach
                     @else
                     <tr>
-                        <td colspan="6" class="text-center font-weight-bold">Jenis Cuti Tidak ada</td>
+                        <td colspan="6" class="text-center font-weight-bold">Jenis Cuti tidak ada</td>
                     </tr>
                     @endif
                 </tbody>

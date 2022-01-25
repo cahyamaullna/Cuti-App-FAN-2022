@@ -35,7 +35,7 @@
             <td>{{ $cuti->user->nama }}</td>
             <td>{{ $cuti->nomer_surat}}</td>
             <td>{{ $cuti->user->npp }}</td>
-            <td>{{ $cuti->jenis_cuti }}</td>
+            <td>{{ $cuti->jeniscuti->nama }}</td>
             <td>{{ $cuti->tanggal_mulai}}</td>
             <td>{{ $cuti->keterangan }}</td>
             <td>

@@ -1090,6 +1090,9 @@ select {
 .right-0 {
 	right: 0px;
 }
+.top-0 {
+	top: 0px;
+}
 .z-0 {
 	z-index: 0;
 }
@@ -1104,6 +1107,9 @@ select {
 }
 .col-span-6 {
 	grid-column: span 6 / span 6;
+}
+.float-right {
+	float: right;
 }
 .float-left {
 	float: left;
@@ -1184,20 +1190,23 @@ select {
 .mb-4 {
 	margin-bottom: 1rem;
 }
-.mb-3 {
-	margin-bottom: 0.75rem;
-}
-.mb-5 {
-	margin-bottom: 1.25rem;
-}
-.mb-2 {
-	margin-bottom: 0.5rem;
+.mr-auto {
+	margin-right: auto;
 }
 .mr-1 {
 	margin-right: 0.25rem;
 }
-.mr-auto {
-	margin-right: auto;
+.-mt-px {
+	margin-top: -1px;
+}
+.mb-2 {
+	margin-bottom: 0.5rem;
+}
+.mb-5 {
+	margin-bottom: 1.25rem;
+}
+.mb-3 {
+	margin-bottom: 0.75rem;
 }
 .block {
 	display: block;
@@ -1300,6 +1309,9 @@ select {
 }
 .max-w-xl {
 	max-width: 36rem;
+}
+.max-w-6xl {
+	max-width: 72rem;
 }
 .flex-1 {
 	flex: 1 1 0%;
@@ -1445,6 +1457,9 @@ select {
 .border-2 {
 	border-width: 2px;
 }
+.border-0 {
+	border-width: 0px;
+}
 .border-b-2 {
 	border-bottom-width: 2px;
 }
@@ -1456,6 +1471,9 @@ select {
 }
 .border-b {
 	border-bottom-width: 1px;
+}
+.border-r {
+	border-right-width: 1px;
 }
 .border-gray-300 {
 	--tw-border-opacity: 1;
@@ -1475,6 +1493,10 @@ select {
 .border-gray-100 {
 	--tw-border-opacity: 1;
 	border-color: rgba(243, 244, 246, var(--tw-border-opacity));
+}
+.border-gray-400 {
+	--tw-border-opacity: 1;
+	border-color: rgba(156, 163, 175, var(--tw-border-opacity));
 }
 .bg-white {
 	--tw-bg-opacity: 1;
@@ -1551,9 +1573,6 @@ select {
 }
 .p-5 {
 	padding: 1.25rem;
-}
-.p-3 {
-	padding: 0.75rem;
 }
 .px-4 {
 	padding-left: 1rem;
@@ -1641,11 +1660,20 @@ select {
 .pb-1 {
 	padding-bottom: 0.25rem;
 }
+.pt-8 {
+	padding-top: 2rem;
+}
 .pb-2 {
 	padding-bottom: 0.5rem;
 }
+.pt-3 {
+	padding-top: 0.75rem;
+}
 .pl-0 {
 	padding-left: 0px;
+}
+.pr-1 {
+	padding-right: 0.25rem;
 }
 .text-left {
 	text-align: left;
@@ -1710,6 +1738,9 @@ select {
 .tracking-widest {
 	letter-spacing: 0.1em;
 }
+.tracking-wider {
+	letter-spacing: 0.05em;
+}
 .text-gray-500 {
 	--tw-text-opacity: 1;
 	color: rgba(107, 114, 128, var(--tw-text-opacity));
@@ -1769,6 +1800,14 @@ select {
 .text-green-500 {
 	--tw-text-opacity: 1;
 	color: rgba(16, 185, 129, var(--tw-text-opacity));
+}
+.text-gray-200 {
+	--tw-text-opacity: 1;
+	color: rgba(229, 231, 235, var(--tw-text-opacity));
+}
+.text-gray-300 {
+	--tw-text-opacity: 1;
+	color: rgba(209, 213, 219, var(--tw-text-opacity));
 }
 .underline {
 	text-decoration: underline;
@@ -2147,6 +2186,10 @@ select {
 
 	.sm\:items-center {
 		align-items: center;
+	}
+
+	.sm\:justify-start {
+		justify-content: flex-start;
 	}
 
 	.sm\:justify-center {

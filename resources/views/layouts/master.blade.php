@@ -41,36 +41,33 @@
             <li class="nav-item dropdown {{ request()->is('dashboard') ? 'active' : '' }}">
               <a href="/dashboard"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
-            <li class="nav-item dropdown {{ request()->is('user-dashboard') ? 'active' : '' }}">
-              <a href="/user-dashboard"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-            </li>
-            @if(!auth()->user()->is_admin && auth()->user()->posisi !== "direktur")
+            @can('not_admin_direktur')
             <li class="menu-header">Data Cuti</li>
             <li class="nav-item {{ request()->is('data/cuti*') ? 'active' : '' }}">
               <a href="/data/cuti" class="nav-link"><i class="fas fa-columns"></i> <span>Data Cuti</span></a>
             </li>
             <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Kalender Cuti</span></a></li>
-            @endif
-            @if(auth()->user()->is_admin)
+            @endcan
+            @can('admin')
             <li class="menu-header">Admin Control</li>
             <li class="nav-item dropdown {{ request()->is('admin/data-pegawai*') || request()->is('admin/jenis-cuti*') ? 'active' : '' }}">
               <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user"></i> <span>Control Admin</span></a>
               <ul class="dropdown-menu">
-                <li class="{{ request()->is('admin/data-pegawai*') ? 'active' : '' }}"><a class="nav-link" href="admin/data-pegawai">Data Pegawai</a></li>
-                <li class="{{ request()->is('admin/jenis-cuti*') ? 'active' : '' }}"><a class="nav-link" href="admin/jenis-cuti">Jenis Cuti</a></li>
+                <li class="{{ request()->is('admin/data-pegawai*') ? 'active' : '' }}"><a class="nav-link" href="/admin/data-pegawai">Data Pegawai</a></li>
+                <li class="{{ request()->is('admin/jenis-cuti*') ? 'active' : '' }}"><a class="nav-link" href="/admin/jenis-cuti">Jenis Cuti</a></li>
               </ul>
             </li>
-            @endif
-            @if(!auth()->user()->is_admin && auth()->user()->posisi !== 'karyawan')
+            @endcan
+            @can('not_admin_karyawan')
             <li class="menu-header">Data Approval</li>
             <li class="nav-item {{ request()->is('data/approval*') ? 'active' : '' }}">
               <a href="/data/approval" class="nav-link"><i class="fas fa-columns"></i> <span>Data Approval</span></a>
             <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Kalender Khusus</span></a></li>
             </li>
-            @endif
-            @if(auth()->user()->posisi == "hrd")
+            @endcan
+            @can('hrd')
             <li><a class="nav-link" href="#"><i class="fas fa-exclamation"></i> <span>Pengurangan Cuti</span></a></li>
-            @endif
+            @endcan
           </ul>
         </aside>
       </div>

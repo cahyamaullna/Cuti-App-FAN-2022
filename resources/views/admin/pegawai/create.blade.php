@@ -11,7 +11,7 @@
             <div class="d-flex">
                 <div class="mb-3 w-50">
                     <label for="nama" class="form-label">Nama</label>
-                    <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autofocus>
+                    <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" autofocus>
                     @error('nama')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -20,7 +20,7 @@
                 </div>
                 <div class="mb-3 w-50 ml-2">
                     <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required>
+                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
                     @error('email')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -31,7 +31,7 @@
             <div class="d-flex">
                 <div class="mb-3 w-50">
                     <label for="npp" class="form-label">NPP</label>
-                    <input type="text" class="form-control @error('npp') is-invalid @enderror" name="npp" value="{{ old('npp') }}" required>
+                    <input type="number" class="form-control @error('npp') is-invalid @enderror" name="npp" value="{{ old('npp') }}" pattern=".{3,}">
                     @error('npp')
                     <div class="invalid-feedback">
                         {{ $message }}
