@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJenisCutiTable extends Migration
+class CreateJeniscutiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateJenisCutiTable extends Migration
      */
     public function up()
     {
-        Schema::create('jenis_cuti', function (Blueprint $table) {
+        Schema::create('jeniscuti', function (Blueprint $table) {
             $table->id();
             $table->string('nama')->unique();
             $table->integer('jumlah_hari');
@@ -28,6 +28,6 @@ class CreateJenisCutiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jenis_cuti');
+        Schema::dropIfExists('jeniscuti');
     }
 }

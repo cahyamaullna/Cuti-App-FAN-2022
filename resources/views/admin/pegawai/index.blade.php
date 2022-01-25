@@ -55,7 +55,7 @@
           @endforeach
           @else
           <tr>
-            <td colspan="6" class="text-center font-weight-bold">Data Pegawai Tidak ada</td>
+            <td colspan="6" class="text-center font-weight-bold">Data pegawai tidak ada</td>
           </tr>
           @endif
         </tbody>

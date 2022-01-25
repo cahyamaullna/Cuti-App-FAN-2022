@@ -6,7 +6,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\jenisCutiController;
-use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\MyProfileController;
 
 /*
@@ -28,10 +27,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::resource('dashboard', DashboardController::class)->except('create', 'store', 'show', 'edit', 'update', 'delete');
-    Route::resource('user-dashboard', UserDashboardController::class);
-    Route::resource('myprofile', MyProfileController::class);	
+Route::resource('dashboard', DashboardController::class)->except('create', 'store', 'show', 'edit', 'update', 'delete')->middleware('auth');
+
+Route::group(['middleware' => ['semua_posisi']], function () {
+    Route::resource('myprofile', MyProfileController::class);
     Route::prefix('data')->group(function () {
         Route::get('cuti', [CutiController::class, 'index']);
         Route::get('cuti/create', [CutiController::class, 'create']);
@@ -39,7 +38,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
-Route::group(['middleware' => ['posisi']], function () {
+Route::group(['middleware' => ['posisi_atasan']], function () {
     Route::get('data/approval', [ApprovalController::class, 'index']);
     Route::get('data/approval/detail', [ApprovalController::class, 'show']);
 });

@@ -25,8 +25,8 @@ class AdminController extends Controller
     {
         $validate = $request->validate([
             'nama' => ['required', 'min:5', 'max:255'],
-            'email' => ['required', 'unique:users', 'email'],
-            'npp' => ['required', 'min:5', 'numeric', 'unique:users'],
+            'email' => ['required', 'email', 'max:255', 'unique:users'],
+            'npp' => ['required', 'numeric', 'unique:users'],
             'posisi' => ['required']
         ]);
 
