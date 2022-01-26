@@ -15,7 +15,11 @@ class jenisCutiController extends Controller
      */
     public function index()
     {
-        $data = JenisCuti::latest()->paginate(5);
+        $search = JenisCuti::latest();
+        if (request('search')) {
+            $search->where('nama', 'like', '%' . request('search') . '%');
+        }
+        $data = $search->get();
         $title = 'jenis cuti';
         return view('admin.jenisCuti.index', compact('title', 'data'));
     }

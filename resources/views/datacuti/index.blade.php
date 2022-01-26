@@ -14,6 +14,11 @@
 <div class="row">
   <div class="col">
     <div class="card shadow p-2">
+      @if(session('success'))
+      <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+      </div>
+      @endif
       <table class="table table-bordered">
         <thead class="table-info">
           <tr>
@@ -28,16 +33,16 @@
           </tr>
         </thead>
         <tbody>
-          @if($cuties->count())
-          @foreach($cuties as $cuti)
+          @if($cuti->count())
+          @foreach($cuti as $c)
           <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $cuti->user->nama }}</td>
-            <td>{{ $cuti->nomer_surat}}</td>
-            <td>{{ $cuti->user->npp }}</td>
-            <td>{{ $cuti->jeniscuti->nama }}</td>
-            <td>{{ $cuti->tanggal_mulai}}</td>
-            <td>{{ $cuti->keterangan }}</td>
+            <td>{{ ++$i }}</td>
+            <td>{{ $c->user->nama }}</td>
+            <td>{{ $c->nomer_surat}}</td>
+            <td>{{ $c->user->npp }}</td>
+            <td>{{ $c->jeniscuti->nama }}</td>
+            <td>{{ $c->tanggal_mulai}}</td>
+            <td>{{ $c->keterangan }}</td>
             <td>
               <div class="badge badge-warning">Proses</div>
             </td>
@@ -50,6 +55,9 @@
           @endif
         </tbody>
       </table>
+      <div class="d-flex justify-content-end">
+        {{ $cuti->links() }}
+      </div>
     </div>
   </div>
 </div>

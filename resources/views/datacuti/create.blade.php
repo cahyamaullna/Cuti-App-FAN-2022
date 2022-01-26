@@ -23,7 +23,7 @@
                 <div class="mb-3 w-50">
                     <label for="jenis_cuti" class="form-label">Jenis Cuti</label>
                     <select class="form-control" name="jeniscuti_id">
-                        @foreach($jeniscuties as $jeniscuti)
+                        @foreach($jeniscuti as $jeniscuti)
                         <option value="{{ $jeniscuti->id }}">{{ $jeniscuti->nama }}</option>
                         @endforeach
                     </select>
@@ -94,9 +94,9 @@
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
-                    <label for="upload_bukti" class="form-label">Upload Files</label>
-                    <input type="file" class="form-control border-0 pl-0 @error('upload_bukti') is-invalid @enderror" name="upload_bukti">
-                    @error('upload_bukti')
+                    <label for="foto_bukti" class="form-label">Upload Files</label>
+                    <input type="file" class="form-control border-0 pl-0 @error('foto_bukti') is-invalid @enderror" name="foto_bukti">
+                    @error('foto_bukti')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
