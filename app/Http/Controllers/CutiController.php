@@ -10,18 +10,20 @@ use Carbon\Carbon;
 
 class CutiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $id = auth()->user()->id;
-        $cuties = Cuti::where('user_id', $id)->paginate(5);
+        $pagination = 10;
+        $cuti = Cuti::where('user_id', $id)->paginate($pagination);
         $title = 'data cuti';
-        return view('datacuti.index', compact('title', 'cuties'));
+        return view('datacuti.index', compact('title', 'cuti'))
+            ->with('i', ($request->input('page', 1) - 1) * $pagination);
     }
 
     public function create()
     {
         $title = 'buat cuti';
-        $jeniscuties = JenisCuti::all();
+        $jeniscuti = JenisCuti::all();
 
         // nomer surat (001/Cuti-FAN/1/2022)
         $now = Carbon::now();
@@ -37,7 +39,7 @@ class CutiController extends Controller
             $urut = (int)substr($ambil->nomer_surat, 2) + 1;
             $nomer = '00' . $urut . '/Cuti-FAN/' . $bulan . '/' . $tahun;
         }
-        return view('datacuti.create', compact('title', 'jeniscuties', 'nomer'));
+        return view('datacuti.create', compact('title', 'jeniscuti', 'nomer'));
     }
 
     public function store(Request $request)
@@ -50,14 +52,14 @@ class CutiController extends Controller
             'keterangan' => ['required', 'min:10', 'max:255'],
             'npp_pengganti' => ['required', 'numeric', 'min:5'],
             'nama_pengganti' => ['required', 'min:5'],
-            'upload_bukti' => ['required', 'image', 'file', 'max:2048']
+            'foto_bukti' => ['required', 'image', 'file', 'max:2048']
         ]);
 
         // id yang sedang login
         $validate['user_id'] = auth()->user()->id;
 
         // path gambar
-        $validate['upload_bukti'] = $request->file('upload_bukti')->store('foto_bukti');
+        $validate['foto_bukti'] = $request->file('foto_bukti')->store('foto_bukti');
 
 
         // sisa cuti

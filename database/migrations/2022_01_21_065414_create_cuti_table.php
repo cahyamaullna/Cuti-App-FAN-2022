@@ -24,7 +24,7 @@ class CreateCutiTable extends Migration
             $table->string('keterangan');
             $table->integer('npp_pengganti');
             $table->string('nama_pengganti');
-            $table->string('upload_bukti');
+            $table->string('foto_bukti');
             $table->timestamps();
         });
     }

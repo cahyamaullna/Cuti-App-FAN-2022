@@ -37,18 +37,18 @@
         </thead>
         <tbody>
           @if($data->count())
-          @foreach($data as $data)
+          @foreach($data as $d)
           <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $data->nama }}</td>
-            <td>{{ $data->npp }}</td>
-            <td>{{ $data->email }}</td>
-            <td>{{ $data->posisi }}</td>
+            <td>{{ ++$i }}</td>
+            <td>{{ $d->nama }}</td>
+            <td>{{ $d->npp }}</td>
+            <td>{{ $d->email }}</td>
+            <td>{{ $d->posisi }}</td>
             <td>
-              <form action="data-pegawai/{{ $data->id }}" method="post">
+              <form action="data-pegawai/{{ $d->id }}" method="post">
                 @csrf
                 @method('delete')
-                <button class="btn btn-danger" onclick="return confirm('Hapus data {{ $data->nama }}?');"><i class=" fas fa-trash"></i></button>
+                <button class="btn btn-danger" onclick="return confirm('Hapus data {{ $d->nama }}?');"><i class=" fas fa-trash"></i></button>
               </form>
             </td>
           </tr>
@@ -60,6 +60,9 @@
           @endif
         </tbody>
       </table>
+      <div class="d-flex justify-content-end">
+        {{ $data->links() }}
+      </div>
     </div>
   </div>
 </div>

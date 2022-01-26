@@ -8,11 +8,19 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = User::where('is_admin', 0)->latest()->paginate(10);
+        $pagination = 10;
+        $search = User::where('is_admin', 0)->latest();
+        if ($request->search) {
+            $search->where('nama', 'like', '%' . $request->search . '%')
+                ->orWhere('npp', 'like', '%' . $request->search . '%')
+                ->orWhere('posisi', 'like', '%' . $request->search . '%');
+        }
+        $data = $search->paginate($pagination);
         $title = 'data pegawai';
-        return view('admin.pegawai.index', compact('title', 'data'));
+        return view('admin.pegawai.index', compact('title', 'data'))
+            ->with('i', ($request->input('page', 1) - 1) * $pagination);
     }
 
     public function create()
