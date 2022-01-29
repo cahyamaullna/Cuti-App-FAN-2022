@@ -47,7 +47,7 @@ class CutiController extends Controller
         $validate = $request->validate([
             'nomer_surat' => ['required'],
             'jeniscuti_id' => ['required', 'min:1'],
-            'sisa_cuti' => ['required'],
+            'sisa_cuti',
             'tanggal_mulai' => ['required'],
             'tanggal_akhir' => ['required'],
             'keterangan' => ['required', 'min:10', 'max:255'],

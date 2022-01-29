@@ -54,14 +54,14 @@
                         <div class="row">
                           <div class="form-group col-md-6 col-12">
                             <label>Current Password</label>
-                            <input type="text" class="form-control" value="{{auth()->user()->nama}}" required="">
+                            <input type="text" class="form-control" required="">
                             <div class="invalid-feedback">
                               Please fill in the first name
                             </div>
                           </div>
                           <div class="form-group col-md-6 col-12">
                             <label>New Password</label>
-                            <input type="text" class="form-control" value="{{auth()->user()->nama}}" required="">
+                            <input type="text" class="form-control" required="">
                             <div class="invalid-feedback">
                               Please fill in the last name
                             </div>
@@ -70,7 +70,7 @@
                         <div class="row">
                           <div class="form-group col-md-6 col-12">
                             <label>Confirm Password</label>
-                            <input type="email" class="form-control" value="{{auth()->user()->email}}" required="">
+                            <input type="email" class="form-control" required="">
                             <div class="invalid-feedback">
                               Please fill in the email
                             </div>

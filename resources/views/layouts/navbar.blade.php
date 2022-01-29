@@ -80,7 +80,7 @@
             <span>Log Out</span></a>
         </form>
         @else
-        <a href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')" class="dropdown-item has-icon border-bottom border-2">
+        <a href="{{ route('myprofile.index') }}" :active="request()->routeIs('profile.show')" class="dropdown-item has-icon border-bottom border-2">
           <i class="far fa-user"></i> Profile
         </a>
         <form method="POST" action="{{ route('logout') }}">

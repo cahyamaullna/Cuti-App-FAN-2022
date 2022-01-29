@@ -1,9 +1,9 @@
 @extends('layouts.master')
 @section('content')
-<div class="section-header mt-n4">
-    <h2>Form cuti FAN 2022</h2>
-</div>
 <div class="p-2 card shadow mb-4">
+<div class="card-header">
+                    <h3>Form Pengajuan Cuti</h3>
+                </div>
     <div class="card-body pl-3">
         <form action="/data/cuti" method="post" enctype="multipart/form-data">
             @csrf
