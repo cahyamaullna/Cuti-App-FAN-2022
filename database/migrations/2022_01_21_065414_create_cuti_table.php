@@ -18,7 +18,7 @@ class CreateCutiTable extends Migration
             $table->foreignId('user_id');
             $table->string('nomer_surat')->unique();
             $table->foreignId('jeniscuti_id');
-            $table->integer('sisa_cuti')->nullable();
+            $table->integer('sisa_cuti');
             $table->date('tanggal_mulai');
             $table->date('tanggal_akhir');
             $table->string('keterangan');

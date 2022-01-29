@@ -12,6 +12,7 @@
                     <label class="form-label">NPP</label>
                     <input type="text" class="form-control" value="{{ auth()->user()->npp }}" readonly>
                     <input type="hidden" class="form-control" name="nomer_surat" value="{{ $nomer }}" readonly>
+                    <input type="hidden" value="{{ auth()->user()->id }}" id="user">
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
@@ -22,42 +23,37 @@
             <div class="d-flex">
                 <div class="mb-3 w-50">
                     <label for="jenis_cuti" class="form-label">Jenis Cuti</label>
-                    <select class="form-control" name="jeniscuti_id">
+                    <select class="form-control @error('jeniscuti_id') bg-outline-danger @enderror" name="jeniscuti_id" id="jeniscuti" onchange="updateJumlahHari()">
+                        <option value=""> Pilih Jenis Cuti</option>
                         @foreach($jeniscuti as $jeniscuti)
+                        @if(old('jeniscuti_id') == $jeniscuti->id)
+                        <option value="{{ $jeniscuti->id }}" selected>{{ $jeniscuti->nama }}</option>
+                        @else
                         <option value="{{ $jeniscuti->id }}">{{ $jeniscuti->nama }}</option>
+                        @endif
                         @endforeach
                     </select>
                 </div>
                 <div class="mb-3 w-50 ml-2">
                     <label class="form-label">Jumlah Hari</label>
-                    <input type="text" class="form-control" value="{{ $jeniscuti->jumlah_hari }} hari" readonly>
+                    <input type="text" class="form-control" id="jumlahhari" name="jumlah_hari" value="{{ old('jumlah_hari') }}" readonly>
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
                     <label for="sisa_cuti" class="form-label">Sisa Cuti</label>
-                    <input type="text" class="form-control" name="sisa_cuti" placeholder="0 hari" readonly>
+                    <input type="text" class="form-control @error('sisa_cuti') is-invalid @enderror" name="sisa_cuti" value="{{ old('sisa_cuti') }}" id="sisacuti" readonly>
                 </div>
 
             </div>
             <div class="d-flex">
                 <div class="mb-3 w-50">
                     <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
-                    <input type="date" class="form-control @error('tanggal_mulai') is-invalid @enderror" name="tanggal_mulai" value="{{ old('tanggal_mulai') }}">
-                    @error('tanggal_mulai')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
+                    <input type="date" class="form-control @error('tanggal_mulai') bg-outline-danger @enderror" name="tanggal_mulai" value="{{ old('tanggal_mulai') }}">
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
                     <label for="tanggal_akhir" class="form-label">Tanggal Akhir</label>
-                    <input type="date" class="form-control @error('tanggal_akhir') is-invalid @enderror" name="tanggal_akhir" value="{{ old('tanggal_akhir') }}">
-                    @error('tanggal_akhir')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
+                    <input type="date" class="form-control @error('tanggal_akhir') bg-outline-danger @enderror" name="tanggal_akhir" value="{{ old('tanggal_akhir') }}">
                 </div>
                 <div class="mb-3 w-50 ml-2">
                     <label for="keterangan" class="form-label">Keterangan</label>
@@ -110,4 +106,41 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script>
+    $('.bg-outline-danger').css("border-color", "red");
+
+    function updateJumlahHari() {
+        let jeniscuti = $('#jeniscuti').val()
+        let user = $('#user').val()
+        let select = $('#jeniscuti option:selected').text()
+
+        $('#jumlahhari').val('')
+        $('#sisacuti').val('')
+
+        if (jeniscuti != '' && jeniscuti != null) {
+            $.ajax({
+                url: "{{url('')}}/jeniscuti/" + jeniscuti,
+                success: function(res) {
+                    $('#jumlahhari').val(res[0].jumlah_hari + ' hari')
+                }
+            })
+
+            $.ajax({
+                url: "{{url('')}}/sisacuti/" + user,
+                success: function(res) {
+                    if (jeniscuti == 1 || select == "Tahunan" || select == "tahunan") {
+                        if (res[0] == null) {
+                            $('#sisacuti').val('12 hari')
+                        } else {
+                            $('#sisacuti').val(res[0].sisa_cuti + ' hari')
+                        }
+                    }
+                }
+            })
+        }
+    }
+</script>
 @endsection

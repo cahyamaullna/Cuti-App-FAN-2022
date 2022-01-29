@@ -46,7 +46,8 @@ class CutiController extends Controller
     {
         $validate = $request->validate([
             'nomer_surat' => ['required'],
-            'jeniscuti_id' => ['required'],
+            'jeniscuti_id' => ['required', 'min:1'],
+            'sisa_cuti' => ['required'],
             'tanggal_mulai' => ['required'],
             'tanggal_akhir' => ['required'],
             'keterangan' => ['required', 'min:10', 'max:255'],
@@ -67,7 +68,22 @@ class CutiController extends Controller
         //     
         // }
 
+        // sisa cuti
+        $validate['sisa_cuti'] = substr($request->sisa_cuti, 0, 2);
+
         Cuti::create($validate);
         return redirect('/data/cuti')->with('success', 'Ajukan cuti sudah dibuat!');
+    }
+
+    public function jeniscuti($jeniscuti)
+    {
+        $data = JenisCuti::where('id', $jeniscuti)->get();
+        return response()->json($data);
+    }
+
+    public function sisacuti($user_id)
+    {
+        $data = Cuti::where('user_id', $user_id)->get('sisa_cuti');
+        return response()->json($data);
     }
 }

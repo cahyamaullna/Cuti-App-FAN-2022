@@ -107,6 +107,8 @@
 
   <!-- Page Specific JS File -->
   <script src="../../../assets/js/page/index.js"></script>
+
+  @yield('js')
 </body>
 
 </html>
