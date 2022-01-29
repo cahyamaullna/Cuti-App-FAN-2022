@@ -42,6 +42,7 @@
                 <div class="mb-3 w-50 ml-2">
                     <label for="sisa_cuti" class="form-label">Sisa Cuti</label>
                     <input type="text" class="form-control @error('sisa_cuti') is-invalid @enderror" name="sisa_cuti" value="{{ old('sisa_cuti') }}" id="sisacuti" readonly>
+                    <input type="hidden" class="form-control" name="sisa_cuti" value="{{ old('sisa_cuti') }}" id="sisacuti2" readonly>
                 </div>
 
             </div>
@@ -119,6 +120,7 @@
 
         $('#jumlahhari').val('')
         $('#sisacuti').val('')
+        $('#sisacuti2').val('')
 
         if (jeniscuti != '' && jeniscuti != null) {
             $.ajax({
@@ -137,6 +139,8 @@
                         } else {
                             $('#sisacuti').val(res[0].sisa_cuti + ' hari')
                         }
+                    } else {
+                        $('#sisacuti2').val('12 hari')
                     }
                 }
             })
