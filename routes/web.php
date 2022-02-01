@@ -42,7 +42,7 @@ Route::group(['middleware' => ['semua_posisi']], function () {
 
 Route::group(['middleware' => ['posisi_atasan']], function () {
     Route::get('data/approval', [ApprovalController::class, 'index']);
-    Route::get('data/approval/detail', [ApprovalController::class, 'show']);
+    Route::get('data/approval/detail/', [ApprovalController::class, 'show']);
 });
 Route::group(['middleware' => ['is_admin']], function () {
 

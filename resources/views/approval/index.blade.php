@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 <div class="section-header">
-    <h1>Data Cuti</h1>
+    <h1>Data Ajukan Cuti</h1>
 </div>
 <div class="row">
     <div class="col">
@@ -18,25 +18,30 @@
                         <th scope="col">Nomor Surat</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Jenis Cuti</th>
-                        <th scope="col">Tanggal</th>
+                        <th scope="col">Tanggal (apa?)</th>
                         <th scope="col">Detail</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($data as $d)
                     <tr>
-                        <th scope="row">1</th>
-                        <td>12345678</td>
-                        <td>Fadly</td>
-                        <td>Cuti Kakek/Nenek</td>
-                        <td>2021/8/31</td>
-                        <td><a href="approval/detail" class="btn btn-icon btn-light mr-2" title="" data-original-title="Detail"><i class="fas fa-eye"></i></a></td>
+                        <td>{{ ++$i }}</td>
+                        <td>{{ $d->user->npp }}</td>
+                        <td>{{ $d->user->nama }}</td>
+                        <td>{{ $d->jeniscuti->nama }}</td>
+                        <td>{{ $d->tanggal_mulai }}</td>
+                        <td>
+                            <a href="approval/detail/{{ $d->id }}" class="btn btn-icon btn-light mr-2" title="" data-original-title="Detail"><i class="fas fa-eye"></i></a>
+                        </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
-            <!-- <div class="pull-right">
-        <a class="btn btn-success" href="#"> Ajukan Cuti</a>
-      </div> -->
+            <div class="d-flex justify-content-end">
+                {{ $data->links() }}
+            </div>
         </div>
     </div>
 </div>
+
 @endsection
