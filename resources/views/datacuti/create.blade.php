@@ -1,9 +1,9 @@
 @extends('layouts.master')
 @section('content')
 <div class="p-2 card shadow mb-4">
-<div class="card-header">
-                    <h3>Form Pengajuan Cuti</h3>
-                </div>
+    <div class="card-header">
+        <h3>Form Pengajuan Cuti</h3>
+    </div>
     <div class="card-body pl-3">
         <form action="/data/cuti" method="post" enctype="multipart/form-data">
             @csrf
@@ -41,7 +41,7 @@
 
                 <div class="mb-3 w-50 ml-2">
                     <label for="sisa_cuti" class="form-label">Sisa Cuti</label>
-                    <input type="text" class="form-control @error('sisa_cuti') is-invalid @enderror" name="sisa_cuti" value="{{ old('sisa_cuti') }}" id="sisacuti" readonly>
+                    <input type="text" class="form-control" name="sisa_cuti" value="{{ old('sisa_cuti') }}" id="sisacuti" readonly>
                     <input type="hidden" class="form-control" name="sisa_cuti" value="{{ old('sisa_cuti') }}" id="sisacuti2" readonly>
                 </div>
 
@@ -72,7 +72,7 @@
             <div class="d-flex">
                 <div class="mb-3 w-50">
                     <label for="npp_pengganti" class="form-label">NPP</label>
-                    <input type="number" class="form-control @error('npp_pengganti') is-invalid @enderror" name="npp_pengganti" value="{{ old('npp_pengganti') }}">
+                    <input type="text" class="form-control @error('npp_pengganti') is-invalid @enderror" name="npp_pengganti" value="{{ old('npp_pengganti') }}">
                     @error('npp_pengganti')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -133,11 +133,13 @@
             $.ajax({
                 url: "{{url('')}}/sisacuti/" + user,
                 success: function(res) {
-                    if (jeniscuti == 1 || select == "Tahunan" || select == "tahunan") {
+                    if (select == "Tahunan" || select == "tahunan") {
                         if (res[0] == null) {
                             $('#sisacuti').val('12 hari')
+                            $('#sisacuti2').val('12 hari')
                         } else {
                             $('#sisacuti').val(res[0].sisa_cuti + ' hari')
+                            $('#sisacuti2').val(res[0].sisa_cuti + ' hari')
                         }
                     } else {
                         $('#sisacuti2').val('12 hari')

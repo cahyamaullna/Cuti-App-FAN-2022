@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cuti;
-use App\Models\Approval;
 use Illuminate\Http\Request;
 
 class ApprovalController extends Controller

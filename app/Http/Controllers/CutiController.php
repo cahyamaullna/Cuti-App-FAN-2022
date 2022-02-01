@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Cuti;
+use App\Models\JenisCuti;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\JenisCuti;
-use Carbon\Carbon;
+use Nette\Utils\DateTime;
 
 class CutiController extends Controller
 {
@@ -42,12 +43,12 @@ class CutiController extends Controller
         return view('datacuti.create', compact('title', 'jeniscuti', 'nomer'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Cuti $cuti)
     {
         $validate = $request->validate([
             'nomer_surat' => ['required'],
             'jeniscuti_id' => ['required', 'min:1'],
-            'sisa_cuti',
+            'sisa_cuti' => ['required'],
             'tanggal_mulai' => ['required'],
             'tanggal_akhir' => ['required'],
             'keterangan' => ['required', 'min:10', 'max:255'],
@@ -59,17 +60,21 @@ class CutiController extends Controller
         // id yang sedang login
         $validate['user_id'] = auth()->user()->id;
 
+        // sisa cuti
+        $validate['sisa_cuti'] = (int)substr($request->sisa_cuti, 0, 2) + 0;
+
+        if ($request->jeniscuti_id == 1) {
+            $tanggal_awal = new DateTime($request->tanggal_mulai);
+            $tanggal_akhir = new DateTime($request->tanggal_akhir);
+            $hasil = ($tanggal_awal->diff($tanggal_akhir)->days + 1);
+            $sisa_cuti = $validate['sisa_cuti'] - $hasil;
+            $validate['sisa_cuti'] = $sisa_cuti;
+        }
+
+        // jika sisacuti sudah habis kasih pesan tidak bisa ajukan cuti
+
         // path gambar
         $validate['foto_bukti'] = $request->file('foto_bukti')->store('foto_bukti');
-
-
-        // sisa cuti
-        // if ($request->jenis_cuti == 'cuti tahunan') {
-        //     
-        // }
-
-        // sisa cuti
-        $validate['sisa_cuti'] = substr($request->sisa_cuti, 0, 2);
 
         Cuti::create($validate);
         return redirect('/data/cuti')->with('success', 'Ajukan cuti sudah dibuat!');
@@ -83,7 +88,7 @@ class CutiController extends Controller
 
     public function sisacuti($user_id)
     {
-        $data = Cuti::where('user_id', $user_id)->get('sisa_cuti');
+        $data = Cuti::where('user_id', $user_id)->latest()->get('sisa_cuti');
         return response()->json($data);
     }
 }
