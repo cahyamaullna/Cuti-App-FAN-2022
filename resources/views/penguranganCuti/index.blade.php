@@ -6,10 +6,7 @@
 @endsection
 @section('content')
 <div class="section-header">
-  <h1>Data Cuti</h1>
-  <div class="section-header-breadcrumb">
-    <div class="breadcrumb-item"><a href="cuti/create" class="btn btn-primary p-2">Ajukan Cuti</a></div>
-  </div>
+  <h1>Pengurangan Cuti</h1>
 </div>
 <div class="row">
   <div class="col">
@@ -23,40 +20,36 @@
         <thead class="table-info">
           <tr>
             <th scope="col">No</th>
-            <th scope="col">Nama</th>
-            <th scope="col">Nomor Surat</th>
             <th scope="col">NPP</th>
-            <th scope="col">Jenis Cuti</th>
-            <th scope="col">Tanggal</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Jumlah Hari</th>
             <th scope="col">Keterangan</th>
-            <th scope="col">Hasil</th>
+            <th scope="col">Aksi</th>
           </tr>
         </thead>
         <tbody>
-          @if($cuti->count())
-          @foreach($cuti as $c)
+          @if($data->count())
+          @foreach($data as $d)
           <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $c->user->nama }}</td>
-            <td>{{ $c->nomer_surat}}</td>
-            <td>{{ $c->user->npp }}</td>
-            <td>{{ $c->jenis_ cuti }}</td>
-            <td>{{ $c->tanggal_mulai}}</td>
-            <td>{{ $c->keterangan }}</td>
+            <td>{{ $d->user->nama }}</td>
+            <td>{{ $d->user->npp }}</td>
+            <td>{{ $d->total_hari }} hari</td>
+            <td>{{ $d->keterangan }}</td>
             <td>
-              <div class="badge badge-warning">Proses</div>
+              <a href="approval/detail/{{ $d->id }}" class="btn btn-icon btn-light mr-2" title="" data-original-title="Detail"><i class="fas fa-eye"></i></a>
             </td>
           </tr>
           @endforeach
           @else
           <tr>
-            <td colspan="8" class="text-center font-weight-bold">Data Cuti Tidak Ada</td>
+            <td colspan="4" class="text-center font-weight-bold">Data Yang Dicari Tidak Ada</td>
           </tr>
           @endif
         </tbody>
       </table>
       <div class="d-flex justify-content-end">
-        {{ $cuti->links() }}
+        {{ $data->links() }}
       </div>
     </div>
   </div>

@@ -31,7 +31,7 @@
             <div class="d-flex">
                 <div class="mb-3 w-50">
                     <label for="npp" class="form-label">NPP</label>
-                    <input type="number" class="form-control @error('npp') is-invalid @enderror" name="npp" value="{{ old('npp') }}" pattern=".{3,}">
+                    <input type="text" class="form-control @error('npp') is-invalid @enderror" name="npp" value="{{ old('npp') }}" pattern=".{3,}">
                     @error('npp')
                     <div class="invalid-feedback">
                         {{ $message }}

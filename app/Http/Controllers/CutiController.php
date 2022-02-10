@@ -15,7 +15,7 @@ class CutiController extends Controller
     {
         $id = auth()->user()->id;
         $pagination = 10;
-        $cuti = Cuti::where('user_id', $id)->paginate($pagination);
+        $cuti = Cuti::where('user_id', $id)->latest()->paginate($pagination);
         $title = 'data cuti';
         return view('datacuti.index', compact('title', 'cuti'))
             ->with('i', ($request->input('page', 1) - 1) * $pagination);
@@ -43,11 +43,12 @@ class CutiController extends Controller
         return view('datacuti.create', compact('title', 'jeniscuti', 'nomer'));
     }
 
-    public function store(Request $request, Cuti $cuti)
+    public function store(Request $request)
     {
-        $validate = $request->validate([
+        $rule = [
+            'user_id' => ['required'],
             'nomer_surat' => ['required'],
-            'jeniscuti_id' => ['required', 'min:1'],
+            'jenis_cuti' => ['required', 'min:1'],
             'sisa_cuti' => ['required'],
             'tanggal_mulai' => ['required'],
             'tanggal_akhir' => ['required'],
@@ -55,34 +56,30 @@ class CutiController extends Controller
             'npp_pengganti' => ['required', 'numeric', 'min:5'],
             'nama_pengganti' => ['required', 'min:5'],
             'foto_bukti' => ['required', 'image', 'file', 'max:2048']
-        ]);
+        ];
 
-        // id yang sedang login
-        $validate['user_id'] = auth()->user()->id;
+        $request->sisa_cuti = (int)substr($request->sisa_cuti, 0, 2) + 0;
 
-        // sisa cuti
-        $validate['sisa_cuti'] = (int)substr($request->sisa_cuti, 0, 2) + 0;
+        $tanggal_awal = new DateTime($request->tanggal_mulai);
+        $tanggal_akhir = new DateTime($request->tanggal_akhir);
+        $hasil = ($tanggal_awal->diff($tanggal_akhir)->days + 1);
 
-        if ($request->jeniscuti_id == 1) {
-            $tanggal_awal = new DateTime($request->tanggal_mulai);
-            $tanggal_akhir = new DateTime($request->tanggal_akhir);
-            $hasil = ($tanggal_awal->diff($tanggal_akhir)->days + 1);
-            $sisa_cuti = $validate['sisa_cuti'] - $hasil;
-            $validate['sisa_cuti'] = $sisa_cuti;
+        $validate = $request->validate($rule);
+
+        $validate['sisa_cuti'] = $request->sisa_cuti;
+
+        if ($request->jenis_cuti == "Tahunan") {
+            $validate['sisa_cuti'] = ['required', 'gte:0'];
+            $validate['sisa_cuti'] = $request->sisa_cuti - $hasil;
         }
-
-        // jika sisacuti sudah habis kasih pesan tidak bisa ajukan cuti
-
-        // path gambar
-        $validate['foto_bukti'] = $request->file('foto_bukti')->store('foto_bukti');
-
+        $validate['total_hari'] = $hasil;
         Cuti::create($validate);
-        return redirect('/data/cuti')->with('success', 'Ajukan cuti sudah dibuat!');
+        return redirect('/data/cuti')->with('success', 'Cuti berhasil diajukan');
     }
 
     public function jeniscuti($jeniscuti)
     {
-        $data = JenisCuti::where('id', $jeniscuti)->get();
+        $data = JenisCuti::where('nama', $jeniscuti)->get();
         return response()->json($data);
     }
 
@@ -90,5 +87,14 @@ class CutiController extends Controller
     {
         $data = Cuti::where('user_id', $user_id)->latest()->get('sisa_cuti');
         return response()->json($data);
+    }
+
+    public function penguranganCuti()
+    {
+        $page = 10;
+        $data = Cuti::where('jenis_cuti', 'Tahunan')->latest()->paginate($page);
+        $title = "pengurangan cuti";
+        return view('penguranganCuti.index', compact('data', 'title'))
+            ->with('i', (Request()->input('page', 1) - 1) * $page);
     }
 }
