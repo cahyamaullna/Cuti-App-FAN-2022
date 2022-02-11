@@ -40,7 +40,7 @@
             <td>{{ $c->user->nama }}</td>
             <td>{{ $c->nomer_surat}}</td>
             <td>{{ $c->user->npp }}</td>
-            <td>{{ $c->jenis_ cuti }}</td>
+            <td>{{ $c->jenis_cuti }}</td>
             <td>{{ $c->tanggal_mulai}}</td>
             <td>{{ $c->keterangan }}</td>
             <td>

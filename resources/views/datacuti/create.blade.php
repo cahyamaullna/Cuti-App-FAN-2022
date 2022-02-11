@@ -42,8 +42,13 @@
 
                 <div class="mb-3 w-50 ml-2">
                     <label for="sisa_cuti" class="form-label">Sisa Cuti</label>
-                    <input type="text" class="form-control" name="sisa_cuti" id="sisacuti" readonly>
+                    <input type="text" class="form-control @error('sisa_cuti') is-invalid @enderror" name="sisa_cuti" id="sisacuti" readonly>
                     <input type="hidden" class="form-control" name="sisa_cuti" id="sisacuti2" readonly>
+                    @error('sisa_cuti')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
             </div>

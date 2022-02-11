@@ -63,15 +63,17 @@ class CutiController extends Controller
         $tanggal_awal = new DateTime($request->tanggal_mulai);
         $tanggal_akhir = new DateTime($request->tanggal_akhir);
         $hasil = ($tanggal_awal->diff($tanggal_akhir)->days + 1);
+        if ($request->jenis_cuti == "Tahunan") {
+            $rule['sisa_cuti'] = ['required', 'gte:0'];
+        }
 
         $validate = $request->validate($rule);
-
-        $validate['sisa_cuti'] = $request->sisa_cuti;
-
+        
         if ($request->jenis_cuti == "Tahunan") {
-            $validate['sisa_cuti'] = ['required', 'gte:0'];
             $validate['sisa_cuti'] = $request->sisa_cuti - $hasil;
         }
+        $validate['sisa_cuti'] = $request->sisa_cuti;
+
         $validate['total_hari'] = $hasil;
         Cuti::create($validate);
         return redirect('/data/cuti')->with('success', 'Cuti berhasil diajukan');
