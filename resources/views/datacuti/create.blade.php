@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 <div class="p-2 card shadow mb-4">
-    <div class="card-header">
+    <div class="card-header pl-3 mb-n2">
         <h3>Form Pengajuan Cuti</h3>
     </div>
     <div class="card-body pl-3">
@@ -12,7 +12,7 @@
                     <label class="form-label">NPP</label>
                     <input type="text" class="form-control" value="{{ auth()->user()->npp }}" readonly>
                     <input type="hidden" class="form-control" name="nomer_surat" value="{{ $nomer }}" readonly>
-                    <input type="hidden" value="{{ auth()->user()->id }}" id="user">
+                    <input type="hidden" value="{{ auth()->user()->id }}" name="user_id" id="user">
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
@@ -23,38 +23,54 @@
             <div class="d-flex">
                 <div class="mb-3 w-50">
                     <label for="jenis_cuti" class="form-label">Jenis Cuti</label>
-                    <select class="form-control @error('jeniscuti_id') bg-outline-danger @enderror" name="jeniscuti_id" id="jeniscuti" onchange="updateJumlahHari()">
-                        <option value=""> Pilih Jenis Cuti</option>
-                        @foreach($jeniscuti as $jeniscuti)
-                        @if(old('jeniscuti_id') == $jeniscuti->id)
-                        <option value="{{ $jeniscuti->id }}" selected>{{ $jeniscuti->nama }}</option>
-                        @else
-                        <option value="{{ $jeniscuti->id }}">{{ $jeniscuti->nama }}</option>
-                        @endif
+                    <select class="form-control @error('jenis_cuti') is-invalid @enderror" name="jenis_cuti" id="jeniscuti" onchange="updateJumlahHari()">
+                        <option value="">Pilih Jenis Cuti</option>
+                        @foreach($jeniscuti as $jcuti)
+                        <option value="{{ $jcuti->nama }}">{{ $jcuti->nama }}</option>
                         @endforeach
                     </select>
+                    @error('jenis_cuti')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="mb-3 w-50 ml-2">
                     <label class="form-label">Jumlah Hari</label>
-                    <input type="text" class="form-control" id="jumlahhari" name="jumlah_hari" value="{{ old('jumlah_hari') }}" readonly>
+                    <input type="text" class="form-control" id="jumlahhari" name="jumlah_hari" readonly>
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
                     <label for="sisa_cuti" class="form-label">Sisa Cuti</label>
-                    <input type="text" class="form-control" name="sisa_cuti" value="{{ old('sisa_cuti') }}" id="sisacuti" readonly>
-                    <input type="hidden" class="form-control" name="sisa_cuti" value="{{ old('sisa_cuti') }}" id="sisacuti2" readonly>
+                    <input type="text" class="form-control @error('sisa_cuti') is-invalid @enderror" name="sisa_cuti" id="sisacuti" readonly>
+                    <input type="hidden" class="form-control" name="sisa_cuti" id="sisacuti2" readonly>
+                    @error('sisa_cuti')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
             </div>
             <div class="d-flex">
                 <div class="mb-3 w-50">
                     <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
-                    <input type="date" class="form-control @error('tanggal_mulai') bg-outline-danger @enderror" name="tanggal_mulai" value="{{ old('tanggal_mulai') }}">
+                    <input type="date" class="form-control @error('tanggal_mulai') is-invalid @enderror" name="tanggal_mulai" value="{{ old('tanggal_mulai') }}">
+                    @error('tanggal_mulai')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
                     <label for="tanggal_akhir" class="form-label">Tanggal Akhir</label>
-                    <input type="date" class="form-control @error('tanggal_akhir') bg-outline-danger @enderror" name="tanggal_akhir" value="{{ old('tanggal_akhir') }}">
+                    <input type="date" class="form-control @error('tanggal_akhir') is-invalid @enderror" name="tanggal_akhir" value="{{ old('tanggal_akhir') }}">
+                    @error('tanggal_akhir')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="mb-3 w-50 ml-2">
                     <label for="keterangan" class="form-label">Keterangan</label>
@@ -142,7 +158,11 @@
                             $('#sisacuti2').val(res[0].sisa_cuti + ' hari')
                         }
                     } else {
-                        $('#sisacuti2').val('12 hari')
+                        if (res[0] == null) {
+                            $('#sisacuti2').val('12 hari')
+                        } else {
+                            $('#sisacuti2').val(res[0].sisa_cuti + ' hari')
+                        }
                     }
                 }
             })

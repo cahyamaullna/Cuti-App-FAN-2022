@@ -36,13 +36,14 @@ Route::group(['middleware' => ['semua_posisi']], function () {
         Route::get('cuti/create', [CutiController::class, 'create']);
         Route::post('cuti', [CutiController::class, 'store']);
     });
-    Route::get('/jeniscuti/{jeniscuti_id}', [CutiController::class, 'jeniscuti']);
+    Route::get('/jeniscuti/{jeniscuti}', [CutiController::class, 'jeniscuti']);
     Route::get('/sisacuti/{user_id}', [CutiController::class, 'sisacuti']);
 });
 
 Route::group(['middleware' => ['posisi_atasan']], function () {
     Route::get('data/approval', [ApprovalController::class, 'index']);
     Route::get('data/approval/detail/', [ApprovalController::class, 'show']);
+    Route::get('pengurangan-cuti', [CutiController::class, 'penguranganCuti']);
 });
 Route::group(['middleware' => ['is_admin']], function () {
 

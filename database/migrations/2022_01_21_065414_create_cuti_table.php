@@ -17,14 +17,18 @@ class CreateCutiTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('nomer_surat')->unique();
-            $table->foreignId('jeniscuti_id');
+            $table->string('jenis_cuti');
             $table->integer('sisa_cuti');
             $table->date('tanggal_mulai');
             $table->date('tanggal_akhir');
+            $table->integer('total_hari');
             $table->string('keterangan');
             $table->integer('npp_pengganti');
             $table->string('nama_pengganti');
             $table->string('foto_bukti');
+            $table->boolean('atasan')->nullable();
+            $table->boolean('hrd')->nullable();
+            $table->boolean('direktur')->nullable();
             $table->timestamps();
         });
     }
