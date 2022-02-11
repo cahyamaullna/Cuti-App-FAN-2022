@@ -28,10 +28,10 @@
                         <td>{{ ++$i }}</td>
                         <td>{{ $d->user->npp }}</td>
                         <td>{{ $d->user->nama }}</td>
-                        <td>{{ $d->jeniscuti->nama }}</td>
+                        <td>{{ $d->jenis_cuti }}</td>
                         <td>{{ $d->tanggal_mulai }}</td>
                         <td>
-                            <a href="approval/detail/{{ $d->id }}" class="btn btn-icon btn-light mr-2" title="" data-original-title="Detail"><i class="fas fa-eye"></i></a>
+                            <a href="approval/modal/detail/{{ $d->id }}" class="btn btn-icon btn-light mr-2" title="" data-toggle="modal" data-target="#ModalDetail"><i class="fas fa-eye"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -43,5 +43,6 @@
         </div>
     </div>
 </div>
-
+    
 @endsection
+@include('approval.modal.detail')

@@ -1,15 +1,12 @@
-@extends('layouts.master')
+<form action="" method="post" enctype="multipart/form-data">
+    <div class="modal fade text-left" id="ModalDetail" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{__('Detail')}}</h4>
+            </div>
+            
 
-@section('navbar')
-@include('layouts.navbar')
-<br>
-@endsection
-@section('content')
-<!-- Main Content -->
-<div class="section-header">
-    <h1>Detail</h1>
-</div>
-<div class="row">
     <div class="col-sm-12 col-md-10 col-lg-12">
         <div class="card">
             <div class="card-header">
@@ -31,7 +28,7 @@
                 <div class="d-flex">
                     <div class="mb-3 w-50">
                         <label for="jenis_cuti" class="form-label">Jenis Cuti</label>
-                        <input type="text" class="form-control" value="{{ auth()->user()->nama }}" readonly>
+                        <input type="text" class="form-control" value="" readonly>
                     </div>
                     <div class="mb-3 w-50 ml-2">
                         <label class="form-label">Jumlah Hari</label>
@@ -100,5 +97,9 @@
         </div>
     </div>
 </div>
-<!-- end Main Content -->
-@endsection
+        </div>
+        </div>
+
+</form>
+
+
