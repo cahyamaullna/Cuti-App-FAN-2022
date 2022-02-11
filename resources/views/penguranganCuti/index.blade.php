@@ -32,8 +32,8 @@
           @foreach($data as $d)
           <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $d->user->nama }}</td>
             <td>{{ $d->user->npp }}</td>
+            <td>{{ $d->user->nama }}</td>
             <td>{{ $d->total_hari }} hari</td>
             <td>{{ $d->keterangan }}</td>
             <td>

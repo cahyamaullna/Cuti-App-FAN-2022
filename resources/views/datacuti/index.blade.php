@@ -44,7 +44,13 @@
             <td>{{ $c->tanggal_mulai}}</td>
             <td>{{ $c->keterangan }}</td>
             <td>
-              <div class="badge badge-warning">Proses</div>
+              @if($c->atasan === 1 && $c->hrd === 1 && $c->direktur === 1 )
+              <div class="badge badge-success">Disetujui</div>
+              @elseif($c->atasan === 0 || $c->hrd === 0 || $c->direktur || 0 )
+              <div class="badge badge-danger">Ditolak</div>
+              @else
+              <div class="badge badge-warning">Diproses</div>
+              @endif
             </td>
           </tr>
           @endforeach
