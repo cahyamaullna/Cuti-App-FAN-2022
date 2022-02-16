@@ -36,7 +36,7 @@
           @if($cuti->count())
           @foreach($cuti as $c)
           <tr>
-            <td>{{ ++$i }}</td>
+            <td width="20px">{{ ++$i }}</td>
             <td>{{ $c->user->nama }}</td>
             <td>{{ $c->nomer_surat}}</td>
             <td>{{ $c->user->npp }}</td>
@@ -56,7 +56,7 @@
           @endforeach
           @else
           <tr>
-            <td colspan="8" class="text-center font-weight-bold">Data Cuti Tidak Ada</td>
+            <td colspan="8" class="text-center font-weight-bold">Data cuti tidak ada</td>
           </tr>
           @endif
         </tbody>
