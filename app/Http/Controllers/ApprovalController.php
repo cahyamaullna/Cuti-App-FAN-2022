@@ -13,14 +13,38 @@ class ApprovalController extends Controller
         $page = 10;
         $data = Cuti::latest()->paginate($page);
         $title = 'approval';
-        return view('approval.index', compact('title', 'data'))
+        $passwordUser = auth()->user()->password;
+        if (password_verify('fanintek2022', $passwordUser)) {
+            $beep = 'beep';
+        } else {
+            $beep = '';
+        }
+        return view('approval.index', compact('title', 'data', 'beep'))
             ->with('i', ($request->input('page', 1) - 1) * $page);
     }
 
-    public function show($id)
+    public function edit($id)
     {
-        $data = Cuti::where('id', $id)->get();
         $title = 'detail';
-        return view('approval.detail', compact('title', 'data'));
+        $data = Cuti::findOrFail($id);
+        return view('approval.edit', compact('data', 'title'));
+    }
+
+    public function update(Request $request, Cuti $cuti)
+    {
+        $validate = $request->validate([
+            'hrd' => 'nullable'
+        ]);
+        $validate['hrd'] = (int)$request->hrd;
+        // dd($validate['hrd']);
+        $cuti->update($validate);
+        return redirect('/data/approval')->with('success', 'Tersimpan');
+    }
+
+    public function download($id)
+    {
+        $file = Cuti::where('id', $id)->first();
+        $path = public_path('storage/files/' . $file->files);
+        return response()->download($path);
     }
 }

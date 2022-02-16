@@ -107,9 +107,9 @@
                 </div>
 
                 <div class="mb-3 w-50 ml-2">
-                    <label for="foto_bukti" class="form-label">Upload Files</label>
-                    <input type="file" class="form-control border-0 pl-0 @error('foto_bukti') is-invalid @enderror" name="foto_bukti">
-                    @error('foto_bukti')
+                    <label for="files" class="form-label">Upload Foto/File</label>
+                    <input type="file" class="form-control border-0 pl-0 @error('files') is-invalid @enderror" name="files">
+                    @error('files')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

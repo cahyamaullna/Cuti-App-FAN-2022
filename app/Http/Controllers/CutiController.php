@@ -17,7 +17,13 @@ class CutiController extends Controller
         $pagination = 10;
         $cuti = Cuti::where('user_id', $id)->latest()->paginate($pagination);
         $title = 'data cuti';
-        return view('datacuti.index', compact('title', 'cuti'))
+        $passwordUser = auth()->user()->password;
+        if (password_verify('fanintek2022', $passwordUser)) {
+            $beep = 'beep';
+        } else {
+            $beep = '';
+        }
+        return view('datacuti.index', compact('title', 'cuti', 'beep'))
             ->with('i', ($request->input('page', 1) - 1) * $pagination);
     }
 
@@ -40,6 +46,7 @@ class CutiController extends Controller
             $urut = (int)substr($ambil->nomer_surat, 2) + 1;
             $nomer = '00' . $urut . '/Cuti-FAN/' . $bulan . '/' . $tahun;
         }
+
         return view('datacuti.create', compact('title', 'jeniscuti', 'nomer'));
     }
 
@@ -55,7 +62,7 @@ class CutiController extends Controller
             'keterangan' => ['required', 'min:10', 'max:255'],
             'npp_pengganti' => ['required', 'numeric', 'min:5'],
             'nama_pengganti' => ['required', 'min:5'],
-            'foto_bukti' => ['required', 'image', 'file', 'max:2048']
+            'files' => ['required', 'file', 'mimes:jpg,png,jpeg,svg,pdf', 'max:2048']
         ];
 
         $request->sisa_cuti = (int)substr($request->sisa_cuti, 0, 2) + 0;
@@ -68,13 +75,18 @@ class CutiController extends Controller
         }
 
         $validate = $request->validate($rule);
-        
+
         if ($request->jenis_cuti == "Tahunan") {
             $validate['sisa_cuti'] = $request->sisa_cuti - $hasil;
         }
         $validate['sisa_cuti'] = $request->sisa_cuti;
-
         $validate['total_hari'] = $hasil;
+
+        $namaFile = $request->file('files')->getClientOriginalName();
+        $validate['files'] = $namaFile;
+
+        $request->file('files')->storeAs('files', $namaFile);
+
         Cuti::create($validate);
         return redirect('/data/cuti')->with('success', 'Cuti berhasil diajukan');
     }
@@ -96,7 +108,13 @@ class CutiController extends Controller
         $page = 10;
         $data = Cuti::where('jenis_cuti', 'Tahunan')->latest()->paginate($page);
         $title = "pengurangan cuti";
-        return view('penguranganCuti.index', compact('data', 'title'))
+        $passwordUser = auth()->user()->password;
+        if (password_verify('fanintek2022', $passwordUser)) {
+            $beep = 'beep';
+        } else {
+            $beep = '';
+        }
+        return view('penguranganCuti.index', compact('data', 'title', 'beep'))
             ->with('i', (Request()->input('page', 1) - 1) * $page);
     }
 }
