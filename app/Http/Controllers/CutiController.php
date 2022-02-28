@@ -5,17 +5,16 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Cuti;
 use App\Models\JenisCuti;
+use Nette\Utils\DateTime;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Nette\Utils\DateTime;
 
 class CutiController extends Controller
 {
     public function index(Request $request)
     {
         $id = auth()->user()->id;
-        $pagination = 10;
-        $cuti = Cuti::where('user_id', $id)->latest()->paginate($pagination);
+        $cuti = Cuti::where('user_id', $id)->get();
         $title = 'data cuti';
         $passwordUser = auth()->user()->password;
         if (password_verify('fanintek2022', $passwordUser)) {
@@ -23,8 +22,7 @@ class CutiController extends Controller
         } else {
             $beep = '';
         }
-        return view('datacuti.index', compact('title', 'cuti', 'beep'))
-            ->with('i', ($request->input('page', 1) - 1) * $pagination);
+        return view('datacuti.index', compact('title', 'cuti', 'beep'));
     }
 
     public function create()
@@ -79,6 +77,7 @@ class CutiController extends Controller
         if ($request->jenis_cuti == "Tahunan") {
             $validate['sisa_cuti'] = $request->sisa_cuti - $hasil;
         }
+
         $validate['sisa_cuti'] = $request->sisa_cuti;
         $validate['total_hari'] = $hasil;
 

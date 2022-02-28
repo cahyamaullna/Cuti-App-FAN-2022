@@ -25,7 +25,7 @@ class AdminController extends Controller
 
     public function create()
     {
-        $title = 'buat data';
+        $title = 'buat akun';
         return view('admin.pegawai.create', compact('title'));
     }
 
@@ -42,7 +42,24 @@ class AdminController extends Controller
         $validate['password'] = password_hash('fanintek2022', PASSWORD_DEFAULT, $cost);
 
         User::create($validate);
-        return redirect('/admin/data-pegawai')->with('success', 'Data berhasil disimpan!');
+        return redirect('/admin/data-pegawai')->with('success', 'Akun berhasil dibuat!');
+    }
+
+    public function edit($id)
+    {
+        $title = 'ubah akun';
+        $data = User::findOrFail($id);
+        return view('admin.pegawai.edit', compact('title', 'data'));
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $validate = $request->validate([
+            'posisi' => ['required']
+        ]);
+
+        $user->update($validate);
+        return redirect('admin/data-pegawai')->with('success', 'Akun berhasil diubah');
     }
 
     public function destroy(User $user)

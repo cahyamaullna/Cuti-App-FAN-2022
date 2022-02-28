@@ -26,9 +26,9 @@ class CreateCutiTable extends Migration
             $table->integer('npp_pengganti');
             $table->string('nama_pengganti');
             $table->string('files');
-            $table->boolean('atasan')->nullable();
-            $table->boolean('hrd')->nullable();
-            $table->boolean('direktur')->nullable();
+            $table->integer('atasan')->nullable();
+            $table->integer('hrd')->nullable();
+            $table->integer('direktur')->nullable();
             $table->timestamps();
         });
     }

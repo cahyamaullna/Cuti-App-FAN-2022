@@ -54,6 +54,8 @@ Route::group(['middleware' => ['is_admin']], function () {
         Route::get('data-pegawai', [AdminController::class, 'index']);
         Route::get('data-pegawai/create', [AdminController::class, 'create']);
         Route::post('data-pegawai', [AdminController::class, 'store']);
+        Route::get('data-pegawai/{id}/edit', [AdminController::class, 'edit']);
+        Route::put('data-pegawai/{user}', [AdminController::class, 'update']);
         Route::delete('data-pegawai/{user}', [AdminController::class, 'destroy']);
     });
     Route::resource('admin/jenis-cuti', jenisCutiController::class)->except('show');
