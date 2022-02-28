@@ -69,12 +69,7 @@
                 </div>
                 <div class="w-50 ml-2">
                     <label for="approval" class="form-label d-block">Approval</label>
-                    @if($data->hrd === 1 || $data->hrd === 0)
-                    <div class="badge badge-info mt-2">Sudah diapprove</div>
-                    @else
-                    <button type="submit" class="btn btn-danger" value="0" name="hrd">Tolak</button>
-                    <button type="submit" class="btn btn-success" value="1" name="hrd">Setuju</button>
-                    @endif
+                    {!! $data->approval !!}
                 </div>
             </div>
         </form>

@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 <div class="section-header">
-    <h1>Data Ajukan Cuti</h1>
+    <h1>Pengajuan Cuti</h1>
 </div>
 <div class="row">
     <div class="col">
@@ -28,21 +28,21 @@
                     <tr>
                         <td>{{ ++$i }}</td>
                         <td>{{ $d->nomer_surat }}</td>
-                        <td>{{ $d->user->nama }}</td>
+                        <td>{{ $d->nama }}</td>
                         <td>{{ $d->jenis_cuti }}</td>
                         <td>{{ $d->tanggal_mulai }}</td>
                         <td>
-                            @if($d->hrd === null)
                             <form action="/data/approval/{{ $d->id }}">
                                 @method('put')
                                 @csrf
+                                @empty($d->detail)
                                 <a href="/data/approval/{{ $d->id }}" class="btn btn-icon btn-light mr-2"><i class="fas fa-eye"></i></a>
+                                @else
+
+                                {!! $d->detail !!}
+
+                                @endempty
                             </form>
-                            @elseif($d->hrd === 1)
-                            <div class="badge badge-success">Disetujui</div>
-                            @elseif($d->hrd === 0)
-                            <div class="badge badge-danger">Ditolak</div>
-                            @endif
                         </td>
                     </tr>
                     @endforeach
@@ -53,16 +53,9 @@
                     @endif
                 </tbody>
             </table>
-            <div class="d-flex justify-content-end">
-                {{ $data->links() }}
-            </div>
         </div>
     </div>
 </div>
 
 
-@endsection
-@include('approval.modal.index')
-
-@section('js')
 @endsection

@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Cuti;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ApprovalController extends Controller
 {
     public function index(Request $request)
     {
         $page = 10;
-        $data = Cuti::latest()->paginate($page);
+        $joindata = Cuti::join('users', 'cuti.user_id', '=', 'users.id')
+            ->get(['users.posisi', 'users.nama', 'cuti.*']);
+        if (auth()->user()->posisi == "atasan") {
+            $data = $joindata->where('posisi', 'karyawan');
+        } elseif (auth()->user()->posisi == "hrd") {
+            $data = $joindata->whereIn('posisi', ['karyawan', 'atasan']);
+        } elseif (auth()->user()->posisi == "direktur") {
+            $data = $joindata->whereIn('posisi', ['karyawan', 'atasan', 'hrd']);
+        }
         $title = 'approval';
         $passwordUser = auth()->user()->password;
         if (password_verify('fanintek2022', $passwordUser)) {
@@ -33,10 +41,17 @@ class ApprovalController extends Controller
     public function update(Request $request, Cuti $cuti)
     {
         $validate = $request->validate([
-            'hrd' => 'nullable'
+            'atasan' => 'nullable|numeric',
+            'hrd' => 'nullable|numeric',
+            'direktur' => 'nullable|numeric'
         ]);
-        $validate['hrd'] = (int)$request->hrd;
-        // dd($validate['hrd']);
+        if ($request->atasan) {
+            $validate['atasan'] = (int)$request->atasan;
+        } elseif ($request->hrd) {
+            $validate['hrd'] = (int)$request->hrd;
+        } elseif ($request->direktur) {
+            $validate['direktur'] = (int)$request->direktur;
+        }
         $cuti->update($validate);
         return redirect('/data/approval')->with('success', 'Tersimpan');
     }
