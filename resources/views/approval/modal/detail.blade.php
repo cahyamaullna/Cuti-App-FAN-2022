@@ -6,7 +6,7 @@
                 <h4 class="modal-title">{{__('Detail')}}</h4>
             </div>
             
-
+<div class="row">
     <div class="col-sm-12 col-md-10 col-lg-12">
         <div class="card">
             <div class="card-header">
@@ -99,7 +99,7 @@
 </div>
         </div>
         </div>
-
+    </div>
 </form>
 
 
