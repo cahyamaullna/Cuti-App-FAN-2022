@@ -7,6 +7,7 @@ use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\jenisCutiController;
 use App\Http\Controllers\MyProfileController;
+use App\Http\Controllers\kalenderCutiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,5 @@ Route::group(['middleware' => ['is_admin']], function () {
     });
     Route::resource('admin/jenis-cuti', jenisCutiController::class)->except('show');
 });
+Route::get('/kalendercuti', [kalenderCutiController::class, 'index']);    
+
