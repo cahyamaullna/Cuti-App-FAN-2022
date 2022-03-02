@@ -20,6 +20,21 @@
   <link rel="stylesheet" href="../../../assets/css/style.css">
   <link rel="stylesheet" href="../../../assets/css/components.css">
   <link rel="icon" type="image/png" href="../../../assets/img/logo.png" />
+
+  <link href='../../../assets/fullcalendar/lib/main.css' rel='stylesheet' />
+    <script src='../../../assets/fullcalendar/lib/main.js'></script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+    </script>
+
 </head>
 
 <body>
@@ -46,7 +61,8 @@
             <li class="nav-item {{ request()->is('data/cuti*') ? 'active' : '' }}">
               <a href="/data/cuti" class="nav-link"><i class="fas fa-columns"></i> <span>Data Cuti</span></a>
             </li>
-            <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Kalender Cuti</span></a></li>
+            <li class="nav-item {{ request()->is('/kalendercuti*') ? 'active' : '' }}">
+            <li><a class="nav-link" href="/kalendercuti"><i class="far fa-square"></i> <span>Kalender Cuti</span></a></li>
             @endcan
             @can('admin')
             <li class="menu-header">Admin Control</li>
@@ -62,7 +78,6 @@
             <li class="menu-header">Data Approval</li>
             <li class="nav-item {{ request()->is('data/approval*') ? 'active' : '' }}">
               <a href="/data/approval" class="nav-link"><i class="fas fa-columns"></i> <span>Data Approval</span></a>
-            <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Kalender Khusus</span></a></li>
             </li>
             @endcan
             @can('hrd')
@@ -109,6 +124,7 @@
 
   <!-- Page Specific JS File -->
   <script src="../../../assets/js/page/index.js"></script>
+  
   @yield('js')
 </body>
 
