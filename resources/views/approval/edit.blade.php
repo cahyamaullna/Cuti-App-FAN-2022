@@ -36,14 +36,15 @@
                 </div>
                 <div class="mb-3 w-50 ml-2">
                     <label class="form-label">Jumlah Hari</label>
-                    <input type="text" class="form-control" value="{{ $data->total_hari }} hari" readonly>
+                    <input type="text" class="form-control" value="{{ $data->total_hari }} hari" name="total_hari" readonly>
+                    <input type="hidden" class="form-control" value="{{ $data->sisa_cuti }}" name="sisa_cuti" readonly>
                 </div>
 
             </div>
             <div class="d-flex">
                 <div class="mb-3 w-50">
                     <label for="jenis_cuti" class="form-label">Jenis Cuti</label>
-                    <input type="text" class="form-control" value="{{ $data->jenis_cuti }}" readonly>
+                    <input type="text" class="form-control" value="{{ $data->jenis_cuti }}" name="jenis_cuti" readonly>
                 </div>
                 <div class="mb-3 w-50 ml-2">
                     <label for="foto_bukti" class="form-label d-block mb-3">Foto/File</label>

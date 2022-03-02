@@ -25,7 +25,7 @@ class Cuti extends Model
     // tabel data cuti
     public function getHasilAttribute()
     {
-        if ($this->user->posisi == 'karyawan') {
+        if (auth()->user()->posisi == 'karyawan') {
             if ($this->atasan == 1 || $this->hrd == 1 || $this->direktur == 1) {
                 $hasil = '<div class="badge badge-danger">Ditolak</div>';
                 return $hasil;
@@ -36,7 +36,7 @@ class Cuti extends Model
                 $hasil = '<div class="badge badge-warning">Diproses</div>';
                 return $hasil;
             }
-        } elseif ($this->user->posisi == 'atasan') {
+        } elseif (auth()->user()->posisi == 'atasan') {
             if ($this->hrd == 1 || $this->direktur == 1) {
                 $hasil = '<div class="badge badge-danger">Ditolak</div>';
                 return $hasil;
@@ -47,7 +47,7 @@ class Cuti extends Model
                 $hasil = '<div class="badge badge-warning">Diproses</div>';
                 return $hasil;
             }
-        } elseif (auth()->user->posisi == 'hrd') {
+        } elseif (auth()->user()->posisi == 'hrd') {
             if ($this->direktur == 1) {
                 $hasil = '<div class="badge badge-danger">Ditolak</div>';
                 return $hasil;
@@ -116,6 +116,9 @@ class Cuti extends Model
             if ($this->atasan == 1 || $this->hrd == 1 || $this->direktur == 1) {
                 $approval = '<div class="badge badge-info mt-2">Sudah Ditolak</div>';
                 return $approval;
+            } elseif ($this->atasan == 2) {
+                $approval = '<div class="badge badge-info mt-2">Sudah Disetujui</div>';
+                return $approval;
             } else {
                 $approval = '<button type="submit" class="btn btn-danger mr-1" value="1" name="atasan">Tolak</button><button type="submit" class="btn btn-success" value="2" name="atasan">Setuju</button>';
                 return $approval;
@@ -124,6 +127,9 @@ class Cuti extends Model
             if ($this->atasan == 1 || $this->hrd == 1 || $this->direktur == 1) {
                 $approval = '<div class="badge badge-info mt-2">Sudah Ditolak</div>';
                 return $approval;
+            } elseif ($this->hrd == 2) {
+                $approval = '<div class="badge badge-info mt-2">Sudah Disetujui</div>';
+                return $approval;
             } else {
                 $approval = '<button type="submit" class="btn btn-danger mr-1" value="1" name="hrd">Tolak</button><button type="submit" class="btn btn-success" value="2" name="hrd">Setuju</button>';
                 return $approval;
@@ -131,6 +137,9 @@ class Cuti extends Model
         } elseif (auth()->user()->posisi == 'direktur') {
             if ($this->atasan == 1 || $this->hrd == 1 || $this->direktur == 1) {
                 $approval = '<div class="badge badge-info mt-2">Sudah Ditolak</div>';
+                return $approval;
+            } elseif ($this->direktur == 2) {
+                $approval = '<div class="badge badge-info mt-2">Sudah Disetujui</div>';
                 return $approval;
             } else {
                 $approval = '<button type="submit" class="btn btn-danger mr-1" value="1" name="direktur">Tolak</button><button type="submit" class="btn btn-success" value="2" name="direktur">Setuju</button>';

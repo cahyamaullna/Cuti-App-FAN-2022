@@ -21,7 +21,7 @@ use App\Http\Controllers\MyProfileController;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('login');
+})->name('login')->middleware('guest');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -37,7 +37,7 @@ Route::group(['middleware' => ['semua_posisi']], function () {
         Route::post('cuti', [CutiController::class, 'store']);
     });
     Route::get('/jeniscuti/{jeniscuti}', [CutiController::class, 'jeniscuti']);
-    Route::get('/sisacuti/{user_id}', [CutiController::class, 'sisacuti']);
+    Route::get('sisacuti/{id}', [CutiController::class, 'sisacuti']);
 });
 
 Route::group(['middleware' => ['posisi_atasan']], function () {
