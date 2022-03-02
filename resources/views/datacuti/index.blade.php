@@ -36,27 +36,19 @@
           @if($cuti->count())
           @foreach($cuti as $c)
           <tr>
-            <td>{{ ++$i }}</td>
+            <td width="20px">{{ ++$i }}</td>
             <td>{{ $c->user->nama }}</td>
             <td>{{ $c->nomer_surat}}</td>
             <td>{{ $c->user->npp }}</td>
             <td>{{ $c->jenis_cuti }}</td>
             <td>{{ $c->tanggal_mulai}}</td>
             <td>{{ $c->keterangan }}</td>
-            <td>
-              @if($c->atasan === 1 && $c->hrd === 1 && $c->direktur === 1 )
-              <div class="badge badge-success">Disetujui</div>
-              @elseif($c->atasan === 0 || $c->hrd === 0 || $c->direktur || 0 )
-              <div class="badge badge-danger">Ditolak</div>
-              @else
-              <div class="badge badge-warning">Diproses</div>
-              @endif
-            </td>
+            <td>{!! $c->hasil !!}</td>
           </tr>
           @endforeach
           @else
           <tr>
-            <td colspan="8" class="text-center font-weight-bold">Data Cuti Tidak Ada</td>
+            <td colspan="8" class="text-center font-weight-bold">Data cuti tidak ada</td>
           </tr>
           @endif
         </tbody>

@@ -21,7 +21,7 @@ use App\Http\Controllers\MyProfileController;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('login');
+})->name('login')->middleware('guest');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -37,12 +37,15 @@ Route::group(['middleware' => ['semua_posisi']], function () {
         Route::post('cuti', [CutiController::class, 'store']);
     });
     Route::get('/jeniscuti/{jeniscuti}', [CutiController::class, 'jeniscuti']);
-    Route::get('/sisacuti/{user_id}', [CutiController::class, 'sisacuti']);
+    Route::get('sisacuti/{id}', [CutiController::class, 'sisacuti']);
 });
 
 Route::group(['middleware' => ['posisi_atasan']], function () {
     Route::get('data/approval', [ApprovalController::class, 'index']);
-    Route::get('data/approval/detail/', [ApprovalController::class, 'show']);
+    Route::get('data/approval/{id}', [ApprovalController::class, 'edit']);
+    Route::get('download/{id}', [ApprovalController::class, 'download']);
+    Route::put('data/approval/{cuti}', [ApprovalController::class, 'update']);
+
     Route::get('pengurangan-cuti', [CutiController::class, 'penguranganCuti']);
 });
 Route::group(['middleware' => ['is_admin']], function () {
@@ -51,6 +54,8 @@ Route::group(['middleware' => ['is_admin']], function () {
         Route::get('data-pegawai', [AdminController::class, 'index']);
         Route::get('data-pegawai/create', [AdminController::class, 'create']);
         Route::post('data-pegawai', [AdminController::class, 'store']);
+        Route::get('data-pegawai/{id}/edit', [AdminController::class, 'edit']);
+        Route::put('data-pegawai/{user}', [AdminController::class, 'update']);
         Route::delete('data-pegawai/{user}', [AdminController::class, 'destroy']);
     });
     Route::resource('admin/jenis-cuti', jenisCutiController::class)->except('show');

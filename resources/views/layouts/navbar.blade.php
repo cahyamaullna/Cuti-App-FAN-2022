@@ -12,7 +12,8 @@
     </div>
   </form>
   <ul class="navbar-nav navbar-right">
-    <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep" aria-expanded="false"><i class="far fa-envelope"></i></a>
+    @can('not_admin')
+    <li class="dropdown dropdown-list-toggle {{ $beep }}"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle" aria-expanded="false" id="envelope"><i class="far fa-envelope"></i></a>
       <div class="dropdown-menu dropdown-list dropdown-menu-right">
         <div class="dropdown-header">Pesan
           <div class="float-right">
@@ -43,7 +44,7 @@
         </div>
       </div>
     </li>
-    <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+    <li class="dropdown dropdown-list-toggle {{ $beep }}"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg" id="notification"><i class="far fa-bell"></i></a>
       <div class="dropdown-menu dropdown-list dropdown-menu-right">
         <div class="dropdown-header">Pemberitahuan
           <div class="float-right">
@@ -66,6 +67,7 @@
         </div>
       </div>
     </li>
+    @endcan
     <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
         <img alt="image" src="../../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
         <div class="d-sm-none d-lg-inline-block">Hi, {{auth()->user()->nama}}</div>
@@ -85,7 +87,7 @@
         </a>
         <form method="POST" action="{{ route('logout') }}">
           @csrf
-          <a class="dropdown-item has-icon text-danger" href="route('logout')" onclick="event.preventDefault();
+          <a class="dropdown-item has-icon text-danger" href="logout" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
             <i class="fas fa-sign-out-alt"></i>
             <span>Log Out</span></a>

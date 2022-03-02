@@ -16,6 +16,7 @@ class CreateCutiTable extends Migration
         Schema::create('cuti', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->string('atasan_id')->nullable();
             $table->string('nomer_surat')->unique();
             $table->string('jenis_cuti');
             $table->integer('sisa_cuti');
@@ -25,10 +26,10 @@ class CreateCutiTable extends Migration
             $table->string('keterangan');
             $table->integer('npp_pengganti');
             $table->string('nama_pengganti');
-            $table->string('foto_bukti');
-            $table->boolean('atasan')->nullable();
-            $table->boolean('hrd')->nullable();
-            $table->boolean('direktur')->nullable();
+            $table->string('files');
+            $table->integer('atasan')->nullable();
+            $table->integer('hrd')->nullable();
+            $table->integer('direktur')->nullable();
             $table->timestamps();
         });
     }

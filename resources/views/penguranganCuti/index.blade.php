@@ -43,7 +43,7 @@
           @endforeach
           @else
           <tr>
-            <td colspan="4" class="text-center font-weight-bold">Data Yang Dicari Tidak Ada</td>
+            <td colspan="6" class="text-center font-weight-bold">Data tidak ada</td>
           </tr>
           @endif
         </tbody>

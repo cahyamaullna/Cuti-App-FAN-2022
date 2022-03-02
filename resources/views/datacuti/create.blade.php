@@ -11,7 +11,6 @@
                 <div class="mb-3 w-50">
                     <label class="form-label">NPP</label>
                     <input type="text" class="form-control" value="{{ auth()->user()->npp }}" readonly>
-                    <input type="hidden" class="form-control" name="nomer_surat" value="{{ $nomer }}" readonly>
                     <input type="hidden" value="{{ auth()->user()->id }}" name="user_id" id="user">
                 </div>
 
@@ -46,7 +45,7 @@
                     <input type="hidden" class="form-control" name="sisa_cuti" id="sisacuti2" readonly>
                     @error('sisa_cuti')
                     <div class="invalid-feedback">
-                        {{ $message }}
+                        Date is not more than or equal to sisa cuti
                     </div>
                     @enderror
                 </div>
@@ -106,16 +105,45 @@
                     @enderror
                 </div>
 
+                @if(auth()->user()->posisi != 'karyawan')
                 <div class="mb-3 w-50 ml-2">
-                    <label for="foto_bukti" class="form-label">Upload Files</label>
-                    <input type="file" class="form-control border-0 pl-0 @error('foto_bukti') is-invalid @enderror" name="foto_bukti">
-                    @error('foto_bukti')
+                    <label for="files" class="form-label">Upload Foto/File</label>
+                    <input type="file" class="form-control border-0 pl-0 @error('files') is-invalid @enderror" name="files">
+                    @error('files')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                @endif
+            </div>
+            @if(auth()->user()->posisi == 'karyawan')
+            <div class="d-flex">
+                <div class="mb-4 w-50">
+                    <label for="atasan_id" class="form-label">Nama Atasan</label>
+                    <select class="form-control @error('atasan_id') is-invalid @enderror" name="atasan_id">
+                        <option value="">Pilih Atasan Anda</option>
+                        @foreach($users as $user)
+                        <option value="{{ $user->id }}">{{ $user->nama }}</option>
+                        @endforeach
+                    </select>
+                    @error('atasan_id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                <div class="mb-4 w-50 ml-2">
+                    <label for="files" class="form-label">Upload Foto/File</label>
+                    <input type="file" class="form-control border-0 pl-0 @error('files') is-invalid @enderror" name="files">
+                    @error('files')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                     @enderror
                 </div>
             </div>
+            @endif
             <div class="mb-3">
                 <a href="/data/cuti" class="btn btn-danger">Kembali</a>
                 <button type="submit" class="btn btn-primary">Simpan</button>

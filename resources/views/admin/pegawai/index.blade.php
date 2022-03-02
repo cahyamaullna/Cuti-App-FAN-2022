@@ -48,6 +48,7 @@
               <form action="data-pegawai/{{ $d->id }}" method="post">
                 @csrf
                 @method('delete')
+                <a class="btn btn-primary btn-action mr-1" href="data-pegawai/{{ $d->id }}/edit"><i class="fas fa-pencil-alt"></i></a>
                 <button class="btn btn-danger" onclick="return confirm('Hapus data {{ $d->nama }}?');"><i class=" fas fa-trash"></i></button>
               </form>
             </td>
