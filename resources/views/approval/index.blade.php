@@ -18,7 +18,7 @@
                         <th scope="col">Nomor Surat</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Jenis Cuti</th>
-                        <th scope="col">Tanggal Awal</th>
+                        <th scope="col">Tanggal Mulai</th>
                         <th scope="col">Detail</th>
                     </tr>
                 </thead>
@@ -26,7 +26,7 @@
                     @if($data->count())
                     @foreach($data as $d)
                     <tr>
-                        <td>{{ ++$i }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $d->nomer_surat }}</td>
                         <td>{{ $d->nama }}</td>
                         <td>{{ $d->jenis_cuti }}</td>
@@ -48,7 +48,7 @@
                     @endforeach
                     @else
                     <tr>
-                        <td colspan="6" class="text-center font-weight-bold">Data tidak ada</td>
+                        <td colspan="6" class="text-center font-weight-bold">Data ajukan cuti tidak ada</td>
                     </tr>
                     @endif
                 </tbody>

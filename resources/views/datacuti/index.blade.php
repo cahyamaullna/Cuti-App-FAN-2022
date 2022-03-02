@@ -36,7 +36,7 @@
           @if($cuti->count())
           @foreach($cuti as $c)
           <tr>
-            <td width="20px">{{ $loop->iteration }}</td>
+            <td width="20px">{{ ++$i }}</td>
             <td>{{ $c->user->nama }}</td>
             <td>{{ $c->nomer_surat}}</td>
             <td>{{ $c->user->npp }}</td>
@@ -53,6 +53,9 @@
           @endif
         </tbody>
       </table>
+      <div class="d-flex justify-content-end">
+        {{ $cuti->links() }}
+      </div>
     </div>
   </div>
 </div>
