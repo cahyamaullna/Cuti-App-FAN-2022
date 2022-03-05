@@ -87,7 +87,16 @@
             <div class="d-flex">
                 <div class="mb-3 w-50">
                     <label for="npp_pengganti" class="form-label">NPP</label>
-                    <input type="text" class="form-control @error('npp_pengganti') is-invalid @enderror" name="npp_pengganti" value="{{ old('npp_pengganti') }}">
+                    <select class="form-control @error('npp_pengganti') is-invalid @enderror" name="npp_pengganti" id="npp_pengganti" onchange="updateNama()">
+                        <option value="">-- Pilih NPP --</option>
+                        @foreach($users as $user)
+                        @if(old('npp_pengganti') == $user->npp)
+                        <option value="{{ $user->npp }}" selected>{{ $user->npp }}</option>
+                        @else
+                        <option value="{{ $user->npp }}">{{ $user->npp }}</option>
+                        @endif
+                        @endforeach
+                    </select>
                     @error('npp_pengganti')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -97,7 +106,7 @@
 
                 <div class="mb-3 w-50 ml-2">
                     <label for="nama_pengganti" class="form-label">Nama Lengkap</label>
-                    <input type="text" class="form-control @error('nama_pengganti') is-invalid @enderror" name="nama_pengganti" value="{{ old('nama_pengganti') }}">
+                    <input type="text" class="form-control @error('nama_pengganti') is-invalid @enderror" name="nama_pengganti" value="{{ old('nama_pengganti') }}" id="nama_pengganti" readonly>
                     @error('nama_pengganti')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -105,7 +114,6 @@
                     @enderror
                 </div>
 
-                @if(auth()->user()->posisi != 'karyawan')
                 <div class="mb-3 w-50 ml-2">
                     <label for="files" class="form-label">Upload Foto/File</label>
                     <input type="file" class="form-control border-0 pl-0 @error('files') is-invalid @enderror" name="files">
@@ -115,35 +123,7 @@
                     </div>
                     @enderror
                 </div>
-                @endif
             </div>
-            @if(auth()->user()->posisi == 'karyawan')
-            <div class="d-flex">
-                <div class="mb-4 w-50">
-                    <label for="atasan_id" class="form-label">Nama Atasan</label>
-                    <select class="form-control @error('atasan_id') is-invalid @enderror" name="atasan_id">
-                        <option value="">Pilih Atasan Anda</option>
-                        @foreach($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->nama }}</option>
-                        @endforeach
-                    </select>
-                    @error('atasan_id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="mb-4 w-50 ml-2">
-                    <label for="files" class="form-label">Upload Foto/File</label>
-                    <input type="file" class="form-control border-0 pl-0 @error('files') is-invalid @enderror" name="files">
-                    @error('files')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-            </div>
-            @endif
             <div class="mb-3">
                 <a href="/data/cuti" class="btn btn-danger">Kembali</a>
                 <button type="submit" class="btn btn-primary">Simpan</button>
@@ -155,8 +135,6 @@
 
 @section('js')
 <script>
-    $('.bg-outline-danger').css("border-color", "red");
-
     function updateJumlahHari() {
         let jeniscuti = $('#jeniscuti').val()
         let user = $('#user').val()
@@ -178,22 +156,27 @@
                 url: "{{url('')}}/sisacuti/" + user,
                 success: function(res) {
                     if (select == "Tahunan" || select == "tahunan") {
-                        if (res[0] == null) {
-                            $('#sisacuti').val('12 hari')
-                            $('#sisacuti2').val('12 hari')
-                        } else {
-                            $('#sisacuti').val(res[0].sisa_cuti + ' hari')
-                            $('#sisacuti2').val(res[0].sisa_cuti + ' hari')
-                        }
+                        $('#sisacuti').val(res[0].sisa_cuti + ' hari')
+                        $('#sisacuti2').val(res[0].sisa_cuti + ' hari')
                     } else {
-                        if (res[0] == null) {
-                            $('#sisacuti2').val('12 hari')
-                        } else {
-                            $('#sisacuti2').val(res[0].sisa_cuti + ' hari')
-                        }
+                        $('#sisacuti2').val(res[0].sisa_cuti + ' hari')
                     }
                 }
             })
+        }
+    }
+
+    function updateNama() {
+        let npp = $('#npp_pengganti').val()
+        if (npp != '') {
+            $.ajax({
+                url: "{{url('')}}/npp/" + npp,
+                success: function(res) {
+                    $('#nama_pengganti').val(res[0].nama)
+                }
+            })
+        } else {
+            $('#nama_pengganti').val('')
         }
     }
 </script>

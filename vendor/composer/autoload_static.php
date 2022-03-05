@@ -604,6 +604,7 @@ class ComposerStaticInit4a39537be4c9d62170505cced4f1caee
         'App\\Models\\Dashboard' => __DIR__ . '/../..' . '/app/Models/Dashboard.php',
         'App\\Models\\Event' => __DIR__ . '/../..' . '/app/Models/Event.php',
         'App\\Models\\JenisCuti' => __DIR__ . '/../..' . '/app/Models/JenisCuti.php',
+        'App\\Models\\PengucanganCuti' => __DIR__ . '/../..' . '/app/Models/PengucanganCuti.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

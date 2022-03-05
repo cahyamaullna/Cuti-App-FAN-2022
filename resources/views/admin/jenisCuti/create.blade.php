@@ -3,7 +3,6 @@
 <div class="section-header mt-n4">
     <h2>Buat Jenis Cuti</h2>
 </div>
-</header>
 <div class="p-2 card shadow mb-4">
     <div class="card-body pl-0">
         <form action="/admin/jenis-cuti" method="post" class="pl-3 pr-1">

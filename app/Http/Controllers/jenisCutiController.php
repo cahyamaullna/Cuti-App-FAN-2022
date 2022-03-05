@@ -49,7 +49,7 @@ class jenisCutiController extends Controller
         ]);
 
         JenisCuti::create($request->all());
-        return redirect('/admin/jenis-cuti')->with('success', 'Data berhasil disimpan');
+        return redirect('/admin/jenis-cuti')->with('success', 'Jenis Cuti berhasil ditambahkan');
     }
 
     /**

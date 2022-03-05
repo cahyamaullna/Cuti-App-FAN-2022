@@ -7,6 +7,9 @@
 @section('content')
 <div class="section-header">
   <h1>Pengurangan Cuti</h1>
+  <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item"><a href="pengurangan-cuti/create" class="btn btn-primary p-2">Tambah</a></div>
+  </div>
 </div>
 <div class="row">
   <div class="col">
@@ -16,38 +19,36 @@
         {{ session('success') }}
       </div>
       @endif
-      <table class="table table-bordered">
-        <thead class="table-info">
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">NPP</th>
-            <th scope="col">Nama</th>
-            <th scope="col">Jumlah Hari</th>
-            <th scope="col">Keterangan</th>
-            <th scope="col">Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          @if($data->count())
-          @foreach($data as $d)
-          <tr>
-            <td>{{ ++$i }}</td>
-            <td>{{ $d->user->npp }}</td>
-            <td>{{ $d->user->nama }}</td>
-            <td>{{ $d->total_hari }} hari</td>
-            <td>{{ $d->keterangan }}</td>
-            <td>
-              <a href="approval/detail/{{ $d->id }}" class="btn btn-icon btn-light mr-2" title="" data-original-title="Detail"><i class="fas fa-eye"></i></a>
-            </td>
-          </tr>
-          @endforeach
-          @else
-          <tr>
-            <td colspan="6" class="text-center font-weight-bold">Data tidak ada</td>
-          </tr>
-          @endif
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead class="table-info">
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Nama</th>
+              <th scope="col">Pengurangan Hari</th>
+              <th scope="col">Sisa Cuti Sekarang</th>
+              <th scope="col">Keterangan</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if($data->count())
+            @foreach($data as $d)
+            <tr>
+              <td>{{ ++$i }}</td>
+              <td>{{ $d->nama }}</td>
+              <td>{{ $d->pengurangan_cuti }}</td>
+              <td>{{ $d->sisa_cuti }} hari</td>
+              <td>{{ $d->keterangan }}</td>
+            </tr>
+            @endforeach
+            @else
+            <tr>
+              <td colspan="6" class="text-center font-weight-bold">Data tidak ada</td>
+            </tr>
+            @endif
+          </tbody>
+        </table>
+      </div>
       <div class="d-flex justify-content-end">
         {{ $data->links() }}
       </div>

@@ -22,18 +22,16 @@
   <link rel="icon" type="image/png" href="../../../assets/img/logo.png" />
 
   <link href='../../../assets/fullcalendar/lib/main.css' rel='stylesheet' />
-    <script src='../../../assets/fullcalendar/lib/main.js'></script>
-    <script>
-
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
-        });
-        calendar.render();
+  <script src='../../../assets/fullcalendar/lib/main.js'></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth'
       });
-
-    </script>
+      calendar.render();
+    });
+  </script>
 
 </head>
 
@@ -61,8 +59,9 @@
             <li class="nav-item {{ request()->is('data/cuti*') ? 'active' : '' }}">
               <a href="/data/cuti" class="nav-link"><i class="fas fa-columns"></i> <span>Data Cuti</span></a>
             </li>
-            <li class="nav-item {{ request()->is('/kalendercuti*') ? 'active' : '' }}">
-            <li><a class="nav-link" href="/kalendercuti"><i class="far fa-square"></i> <span>Kalender Cuti</span></a></li>
+            <li class="nav-item {{ request()->is('kalendercuti') ? 'active' : '' }}">
+              <a class="nav-link" href="/kalendercuti"><i class="far fa-square"></i> <span>Kalender Cuti</span></a>
+            </li>
             @endcan
             @can('admin')
             <li class="menu-header">Admin Control</li>
@@ -81,7 +80,7 @@
             </li>
             @endcan
             @can('hrd')
-            <li class="nav-item {{ request()->is('pengurangan-cuti') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->is('pengurangan-cuti*') ? 'active' : '' }}">
               <a class="nav-link" href="/pengurangan-cuti"><i class="fas fa-exclamation"></i> <span>Pengurangan Cuti</span></a>
             </li>
             @endcan
@@ -124,7 +123,7 @@
 
   <!-- Page Specific JS File -->
   <script src="../../../assets/js/page/index.js"></script>
-  
+
   @yield('js')
 </body>
 

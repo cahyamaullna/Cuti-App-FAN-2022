@@ -16,7 +16,6 @@ class CreateCutiTable extends Migration
         Schema::create('cuti', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('atasan_id')->nullable();
             $table->string('nomer_surat')->unique();
             $table->string('jenis_cuti');
             $table->integer('sisa_cuti');

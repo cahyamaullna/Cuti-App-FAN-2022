@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\jenisCutiController;
 use App\Http\Controllers\MyProfileController;
 use App\Http\Controllers\kalenderCutiController;
+use App\Http\Controllers\PenguranganCutiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,18 +37,24 @@ Route::group(['middleware' => ['semua_posisi']], function () {
         Route::get('cuti', [CutiController::class, 'index']);
         Route::get('cuti/create', [CutiController::class, 'create']);
         Route::post('cuti', [CutiController::class, 'store']);
+
+        // for jquery
+        Route::get('jeniscuti/{jeniscuti}', [CutiController::class, 'jenisCuti']);
+        Route::get('sisacuti/{id}', [CutiController::class, 'sisaCuti']);
+        Route::get('npp/{npp}', [CutiController::class, 'ambilNpp']);
     });
-    Route::get('/jeniscuti/{jeniscuti}', [CutiController::class, 'jeniscuti']);
-    Route::get('sisacuti/{id}', [CutiController::class, 'sisacuti']);
 });
 
 Route::group(['middleware' => ['posisi_atasan']], function () {
     Route::get('data/approval', [ApprovalController::class, 'index']);
-    Route::get('data/approval/{id}', [ApprovalController::class, 'edit']);
-    Route::get('download/{id}', [ApprovalController::class, 'download']);
+    Route::get('data/approval/{id}', [ApprovalController::class, 'detail']);
     Route::put('data/approval/{cuti}', [ApprovalController::class, 'update']);
+    Route::get('download/{id}', [ApprovalController::class, 'download']);
 
-    Route::get('pengurangan-cuti', [CutiController::class, 'penguranganCuti']);
+    Route::get('pengurangan-cuti', [PenguranganCutiController::class, 'index']);
+    Route::get('pengurangan-cuti/create', [PenguranganCutiController::class, 'create']);
+    Route::post('pengurangan-cuti', [PenguranganCutiController::class, 'store']);
+    Route::get('/ambil-nama/{nama}', [PenguranganCutiController::class, 'ambilNama']);
 });
 Route::group(['middleware' => ['is_admin']], function () {
 
@@ -58,8 +65,8 @@ Route::group(['middleware' => ['is_admin']], function () {
         Route::get('data-pegawai/{id}/edit', [AdminController::class, 'edit']);
         Route::put('data-pegawai/{user}', [AdminController::class, 'update']);
         Route::delete('data-pegawai/{user}', [AdminController::class, 'destroy']);
-    });
-    Route::resource('admin/jenis-cuti', jenisCutiController::class)->except('show');
-});
-Route::get('/kalendercuti', [kalenderCutiController::class, 'index']);    
 
+        Route::resource('jenis-cuti', jenisCutiController::class)->except('show');
+    });
+});
+Route::get('/kalendercuti', [kalenderCutiController::class, 'index']);
