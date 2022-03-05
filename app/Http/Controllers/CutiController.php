@@ -17,7 +17,10 @@ class CutiController extends Controller
         $id = auth()->user()->id;
         $page = 10;
         $title = 'data cuti';
-        $cuti = Cuti::where('user_id', $id)->simplePaginate($page);
+        $cuti = Cuti::where('user_id', $id)
+            ->searchCuti(request('search'))
+            ->latest()
+            ->paginate($page);
         $passwordUser = auth()->user()->password;
         if (password_verify('fanintek2022', $passwordUser)) {
             $beep = 'beep';
@@ -26,14 +29,14 @@ class CutiController extends Controller
         }
 
         return view('datacuti.index', compact('title', 'cuti', 'beep'))
-            ->with('i', (Request()->input('page', 1) - 1) * $page);;
+            ->with('i', (Request()->input('page', 1) - 1) * $page);
     }
 
     public function create()
     {
         $title = 'buat cuti';
         $jeniscuti = JenisCuti::all();
-        $users = User::where('posisi', 'atasan')->get(['nama', 'id']);
+        $users = User::whereNotIn('posisi', ['direktur'])->get(['nama', 'id', 'npp']);
         return view('datacuti.create', compact('title', 'jeniscuti', 'users'));
     }
 
@@ -47,10 +50,9 @@ class CutiController extends Controller
             'tanggal_mulai' => ['required'],
             'tanggal_akhir' => ['required'],
             'keterangan' => ['required', 'min:10', 'max:255'],
-            'npp_pengganti' => ['required', 'numeric', 'min:5'],
-            'nama_pengganti' => ['required', 'min:5'],
+            'npp_pengganti' => ['required', 'numeric', 'min:1'],
+            'nama_pengganti' => ['required'],
             'files' => ['required', 'file', 'mimes:jpg,png,jpeg,svg,pdf', 'max:2048'],
-            'atasan_id' => ['required', 'min:1']
         ];
 
         $request->sisa_cuti = (int)substr($request->sisa_cuti, 0, 2) + 0;
@@ -62,10 +64,6 @@ class CutiController extends Controller
             if ($hasil > 12 || $hasil > $request->sisa_cuti) {
                 $rule['sisa_cuti'] = ['required', 'lte:12', 'numeric'];
             }
-        }
-
-        if (auth()->user()->posisi != 'karyawan') {
-            $rule['atasan_id'] = ['nullable'];
         }
 
         $validate = $request->validate($rule);
@@ -88,6 +86,7 @@ class CutiController extends Controller
 
         $validate['sisa_cuti'] = $request->sisa_cuti;
         $validate['total_hari'] = $hasil;
+        $validate['updated_at'] = null;
 
         $namaFile = $request->file('files')->getClientOriginalName();
         $validate['files'] = $namaFile;
@@ -98,30 +97,21 @@ class CutiController extends Controller
         return redirect('/data/cuti')->with('success', 'Cuti berhasil diajukan');
     }
 
-    public function jeniscuti($jeniscuti)
+    public function jenisCuti($jeniscuti)
     {
         $data = JenisCuti::where('nama', $jeniscuti)->get();
         return response()->json($data);
     }
 
-    public function sisacuti($id)
+    public function sisaCuti($id)
     {
-        $data = Cuti::where('user_id', $id)->latest()->get();
+        $data = User::where('id', $id)->get();
         return response()->json($data);
     }
 
-    public function penguranganCuti()
+    public function ambilNpp($npp)
     {
-        $page = 10;
-        $data = Cuti::where('jenis_cuti', 'Tahunan')->latest()->paginate($page);
-        $title = "pengurangan cuti";
-        $passwordUser = auth()->user()->password;
-        if (password_verify('fanintek2022', $passwordUser)) {
-            $beep = 'beep';
-        } else {
-            $beep = '';
-        }
-        return view('penguranganCuti.index', compact('data', 'title', 'beep'))
-            ->with('i', (Request()->input('page', 1) - 1) * $page);
+        $data = User::where('npp', $npp)->get('nama');
+        return response()->json($data);
     }
 }

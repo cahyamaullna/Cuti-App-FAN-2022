@@ -38,6 +38,7 @@ return array(
     'App\\Models\\Dashboard' => $baseDir . '/app/Models/Dashboard.php',
     'App\\Models\\Event' => $baseDir . '/app/Models/Event.php',
     'App\\Models\\JenisCuti' => $baseDir . '/app/Models/JenisCuti.php',
+    'App\\Models\\PengucanganCuti' => $baseDir . '/app/Models/PengucanganCuti.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

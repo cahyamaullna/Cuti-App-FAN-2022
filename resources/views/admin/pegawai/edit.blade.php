@@ -26,12 +26,27 @@
                 </div>
                 <div class="mb-3 w-50 ml-2">
                     <label for="posisi" class="form-label">Posisi</label>
-                    <select class="form-control" name="posisi">
-                        <option value="karyawan" {{ $data->posisi == 'karyawan' ? 'selected' : ''}}>Karyawan</option>
-                        <option value="atasan" {{ $data->posisi == 'atasan' ? 'selected' : ''}}>Atasan</option>
-                        <option value="hrd" {{ $data->posisi == 'hrd' ? 'selected' : ''}}>HRD</option>
-                        <option value="direktur" {{ $data->posisi == 'direktur' ? 'selected' : ''}}>Direktur</option>
+                    <select class="form-control" name="posisi" id="posisi" onchange="updateAtasan()">
+                        <option value="">-- Pilih Posisi --</option>
+                        <option value="karyawan">Karyawan</option>
+                        <option value="atasan">Atasan</option>
+                        <option value="hrd">HRD</option>
+                        <option value="direktur">Direktur</option>
                     </select>
+                </div>
+                <div class="mb-3 w-50 ml-2 d-none" id="atasan_id">
+                    <label for="atasan_id" class="form-label">Atasan</label>
+                    <select class="form-control" name="atasan_id" id="atasan_id">
+                        <option value="">-- Pilih Atasan --</option>
+                        @foreach($get_atasan as $user)
+                        <option value="{{ $user->id }}">{{ $user->nama }}</option>
+                        @endforeach
+                    </select>
+                    @error('atasan_id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
             </div>
             <hr />
@@ -42,4 +57,16 @@
         </form>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    function updateAtasan() {
+        let posisi = $('#posisi').val()
+        if (posisi == 'karyawan' || posisi == 'atasan') {
+            $('#atasan_id').removeClass('d-none')
+        } else {
+            $('#atasan_id').addClass('d-none')
+        }
+    }
+</script>
 @endsection

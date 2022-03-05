@@ -6,7 +6,7 @@
       <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
     </ul>
     <div class="search-element">
-      <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" value="{{ request('search') }}" data-width="250">
+      <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" data-width="250">
       <button class="btn" type="submit"><i class="fas fa-search"></i></button>
       <div class="search-backdrop"></div>
     </div>
@@ -23,7 +23,7 @@
         <div class="dropdown-list-content dropdown-list-message" tabindex="3" style="overflow: hidden; outline: none;">
           <a href="#" class="dropdown-item dropdown-item-unread">
             <div class="dropdown-item-avatar">
-              <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle">
+              <img alt="image" src="../../../assets/img/avatar/avatar-1.png" class="rounded-circle">
               <div class="is-online"></div>
             </div>
             <div class="dropdown-item-desc">
@@ -82,7 +82,7 @@
             <span>Log Out</span></a>
         </form>
         @else
-        <a href="{{ route('myprofile.index') }}" :active="request()->routeIs('profile.show')" class="dropdown-item has-icon border-bottom border-2">
+        <a href="{{ route('profile.show') }}" class="dropdown-item has-icon border-bottom border-2">
           <i class="far fa-user"></i> Profile
         </a>
         <form method="POST" action="{{ route('logout') }}">

@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('posisi')->nullable();
+            $table->foreignId('atasan_id')->nullable();
+            $table->integer('sisa_cuti')->nullable();
             $table->boolean('is_admin')->default(FALSE);
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

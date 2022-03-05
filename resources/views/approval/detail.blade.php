@@ -38,6 +38,7 @@
                     <label class="form-label">Jumlah Hari</label>
                     <input type="text" class="form-control" value="{{ $data->total_hari }} hari" name="total_hari" readonly>
                     <input type="hidden" class="form-control" value="{{ $data->sisa_cuti }}" name="sisa_cuti" readonly>
+                    <input type="hidden" class="form-control" value="{{ $data->user_id }}" name="user_id" readonly>
                 </div>
 
             </div>

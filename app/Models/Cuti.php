@@ -22,6 +22,23 @@ class Cuti extends Model
         return $this->belongsTo(JenisCuti::class);
     }
 
+    public function scopeSearchCuti($query, $search)
+    {
+        if (isset($search) ?? false) {
+            return $query->where('jenis_cuti', 'like', '%' . $search . '%')
+                ->orWhere('tanggal_mulai', 'like', '%' . $search . '%');
+        }
+    }
+
+    public function scopeSearchApproval($query, $search)
+    {
+        if (isset($search) ?? false) {
+            return $query->where('nama', 'like', '%' . $search . '%')
+                ->orWhere('jenis_cuti', 'like', '%' . $search . '%')
+                ->orWhere('tanggal_mulai', 'like', '%' . $search . '%');
+        }
+    }
+
     // tabel data cuti
     public function getHasilAttribute()
     {
