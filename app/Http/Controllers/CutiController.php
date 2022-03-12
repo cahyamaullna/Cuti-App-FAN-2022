@@ -91,7 +91,7 @@ class CutiController extends Controller
         $namaFile = $request->file('files')->getClientOriginalName();
         $validate['files'] = $namaFile;
 
-        $request->file('files')->storeAs('files', $namaFile);
+        $request->file('files')->storeAs('public/files', $namaFile);
 
         Cuti::create($validate);
         return redirect('/data/cuti')->with('success', 'Cuti berhasil diajukan');

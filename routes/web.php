@@ -39,10 +39,11 @@ Route::group(['middleware' => ['semua_posisi']], function () {
         Route::post('cuti', [CutiController::class, 'store']);
 
         // for jquery
-        Route::get('jeniscuti/{jeniscuti}', [CutiController::class, 'jenisCuti']);
+    });
+    
+    Route::get('jeniscuti/{jeniscuti}', [CutiController::class, 'jenisCuti']);
         Route::get('sisacuti/{id}', [CutiController::class, 'sisaCuti']);
         Route::get('npp/{npp}', [CutiController::class, 'ambilNpp']);
-    });
 });
 
 Route::group(['middleware' => ['posisi_atasan']], function () {
