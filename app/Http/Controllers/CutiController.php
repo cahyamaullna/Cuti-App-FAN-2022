@@ -88,10 +88,10 @@ class CutiController extends Controller
         $validate['total_hari'] = $hasil;
         $validate['updated_at'] = null;
 
-        $namaFile = $request->file('files')->getClientOriginalName();
-        $validate['files'] = $namaFile;
+        $namafile = $request->file('files')->getClientOriginalName();
+        $validate['files'] = $namafile;
 
-        $request->file('files')->storeAs('files', $namaFile);
+        $request->file('files')->storeAs('files', $namafile);
 
         Cuti::create($validate);
         return redirect('/data/cuti')->with('success', 'Cuti berhasil diajukan');
